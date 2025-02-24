@@ -13,6 +13,16 @@ TagManager:
   - triggeurTete
   - BrasG
   - triggeurBrasG
+  - mainG
+  - triggeurMainG
+  - jambeR
+  - triggeurJambeR
+  - piedR
+  - triggeurPiedR
+  - jambeL
+  - triggeurJambeL
+  - piedL
+  - triggeurPiedL
   layers:
   - Default
   - TransparentFX
