@@ -23,6 +23,7 @@ TagManager:
   - triggeurJambeL
   - piedL
   - triggeurPiedL
+  - openOrdinateur
   layers:
   - Default
   - TransparentFX

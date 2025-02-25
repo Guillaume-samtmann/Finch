@@ -17,7 +17,8 @@ public class TerminalManager : MonoBehaviour
 
     private void Start()
     {
-       interpreter = GetComponent<Interpreter>(); 
+       interpreter = GetComponent<Interpreter>();
+       StartCoroutine(FocusOnInput());
     }
 
     private void OnGUI()
@@ -96,5 +97,11 @@ public class TerminalManager : MonoBehaviour
         {
             sr.verticalNormalizedPosition = 0;
         }
+    }
+    IEnumerator FocusOnInput()
+    {
+        yield return new WaitForEndOfFrame(); // Assure que tout est chargé avant
+        terminalInput.Select();
+        terminalInput.ActivateInputField();
     }
 }
