@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Interpreter : MonoBehaviour
 {
@@ -77,16 +78,24 @@ public class Interpreter : MonoBehaviour
         {
             if(isAdmin)
             {
-                if(!teteIsinstall)
+                if (PlayerPrefs.HasKey("Tete_Position") && PlayerPrefs.HasKey("Tete_Rotation"))
                 {
-                    response.Add("Le package \"tete\" est bien installé vous pouvez le configurez");
-                    teteIsinstall = true;
+                    response.Add("Package déja installé");
                     return response;
                 }
                 else
                 {
-                    response.Add("Package déja installé");
-                    return response;
+                    if (!teteIsinstall)
+                    {
+                        response.Add("Le package \"tete\" est bien installé vous pouvez le configurez");
+                        teteIsinstall = true;
+                        return response;
+                    }
+                    else
+                    {
+                        response.Add("Package déja installé");
+                        return response;
+                    }
                 }
             }
             else
@@ -100,24 +109,34 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (teteIsinstall)
+                if (PlayerPrefs.HasKey("Tete_Position") && PlayerPrefs.HasKey("Tete_Rotation"))
                 {
-                    if(!teteIsConf)
-                    {
-                        response.Add("Fichiez crée vous pouvez ajoutez la tête au robot");
-                        teteIsConf = true;
-                        return response;
-                    }
-                    else
-                    {
-                        response.Add("Configuration déja en place");
-                        return response;
-                    }
+                    response.Add("Configuration déja en place");
+                    return response;
                 }
                 else
                 {
-                    response.Add("Aucune référence à tête dans vos package la config est impossible");
-                    return response;
+                    if (teteIsinstall)
+                    {
+                        if (!teteIsConf)
+                        {
+                            response.Add("Fichiez crée vous pouvez ajoutez la tête au robot");
+                            PlayerPrefs.SetInt("TeteIsConfig", 1);
+                            PlayerPrefs.Save();
+                            teteIsConf = true;
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Configuration déja en place");
+                            return response;
+                        }
+                    }
+                    else
+                    {
+                        response.Add("Aucune référence à tête dans vos package la config est impossible");
+                        return response;
+                    }
                 }
             }
             else
@@ -131,16 +150,24 @@ public class Interpreter : MonoBehaviour
         {
             if(isAdmin)
             {
-                if (!brasRisinstall)
+                if (PlayerPrefs.HasKey("BrasR_Position") && PlayerPrefs.HasKey("BrasR_Rotation"))
                 {
-                    response.Add("Le package \"brasR\" est bien installé vous pouvez le configurez");
-                    brasRisinstall = true;
+                    response.Add("Package déja installé");
                     return response;
                 }
                 else
                 {
-                    response.Add("Package déja installé");
-                    return response;
+                    if (!brasRisinstall)
+                    {
+                        response.Add("Le package \"brasR\" est bien installé vous pouvez le configurez");
+                        brasRisinstall = true;
+                        return response;
+                    }
+                    else
+                    {
+                        response.Add("Package déja installé");
+                        return response;
+                    }
                 }
             }
             else
@@ -155,24 +182,34 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (brasRisinstall)
+                if (PlayerPrefs.HasKey("BrasR_Position") && PlayerPrefs.HasKey("BrasR_Rotation"))
                 {
-                    if (!brasRisConf)
-                    {
-                        response.Add("Fichiez crée vous pouvez ajoutez le bras (réf : 982374) au robot");
-                        brasRisConf = true;
-                        return response;
-                    }
-                    else
-                    {
-                        response.Add("Configuration déja en place");
-                        return response;
-                    }
+                    response.Add("Configuration déja en place");
+                    return response;
                 }
                 else
                 {
-                    response.Add("Aucune référence au brasR dans vos package la config est impossible");
-                    return response;
+                    if (brasRisinstall)
+                    {
+                        if (!brasRisConf)
+                        {
+                            response.Add("Fichiez crée vous pouvez ajoutez le bras (réf : 982374) au robot");
+                            brasRisConf = true;
+                            PlayerPrefs.SetInt("BrasRIsConfig", 1);
+                            PlayerPrefs.Save();
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Configuration déja en place");
+                            return response;
+                        }
+                    }
+                    else
+                    {
+                        response.Add("Aucune référence au brasR dans vos package la config est impossible");
+                        return response;
+                    }
                 }
             }
             else
@@ -186,31 +223,55 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (brasRisConf)
+                if (PlayerPrefs.HasKey("MainR_Position") && PlayerPrefs.HasKey("MainR_Rotation"))
                 {
-                    if (!mainRisinstall)
-                    {
-                        response.Add("Le package \"mainR\" est bien installé vous pouvez le configurez");
-                        mainRisinstall = true;
-                        return response;
-                    }
-                    else
-                    {
-                        response.Add("Package déja installé");
-                        return response;
-                    }
-
+                    response.Add("Package déja installé");
+                    return response;
                 }
                 else
                 {
-                    response.Add("Erreur il manque des dépendances");
-                    return response;
+                    if (PlayerPrefs.HasKey("BrasR_Position") && PlayerPrefs.HasKey("BrasR_Rotation"))
+                    {
+                        if (!mainRisinstall)
+                        {
+                            response.Add("Le package \"mainR\" est bien installé vous pouvez le configurez");
+                            mainRisinstall = true;
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Package déja installé");
+                            return response;
+                        }
+                    }
+                    else
+                    {
+                        if (brasRisConf)
+                        {
+                            if (!mainRisinstall)
+                            {
+                                response.Add("Le package \"mainR\" est bien installé vous pouvez le configurez");
+                                mainRisinstall = true;
+                                return response;
+                            }
+                            else
+                            {
+                                response.Add("Package déja installé");
+                                return response;
+                            }
+
+                        }
+                        else
+                        {
+                            response.Add("Erreur il manque des dépendances");
+                            return response;
+                        }
+                    }
                 }
             }
             else
             {
                 response.Add("Vous n'avez pas les droits nécessaire");
-
                 return response;
             }
         }
@@ -219,30 +280,39 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (mainRisinstall)
+                if (PlayerPrefs.HasKey("MainR_Position") && PlayerPrefs.HasKey("MainR_Rotation"))
                 {
-                    if (!mainRisConf)
-                    {
-                        response.Add("Fichiez crée vous pouvez ajoutez la main (réf : 981985) au robot");
-                        mainRisConf = true;
-                        return response;
-                    }
-                    else
-                    {
-                        response.Add("Configuration déja en place");
-                        return response;
-                    }
+                    response.Add("Configuration déja en place");
+                    return response;
                 }
                 else
                 {
-                    response.Add("Aucune référence à mainR dans vos package la config est impossible");
-                    return response;
-                }
+                    if (mainRisinstall)
+                    {
+                        if (!mainRisConf)
+                        {
+                            response.Add("Fichiez crée vous pouvez ajoutez la main (réf : 981985) au robot");
+                            mainRisConf = true;
+                            PlayerPrefs.SetInt("MainRIsConfig", 1);
+                            PlayerPrefs.Save();
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Configuration déja en place");
+                            return response;
+                        }
+                    }
+                    else
+                    {
+                        response.Add("Aucune référence à mainR dans vos package la config est impossible");
+                        return response;
+                    }
+                }   
             }
             else
             {
                 response.Add("Vous n'avez pas les droits nécessaire");
-
                 return response;
             }
         }
@@ -251,22 +321,29 @@ public class Interpreter : MonoBehaviour
         {
             if(isAdmin)
             {
-                if (!jambeRisinstall)
-                {
-                    response.Add("Le package \"jambeR\" est bien installé vous pouvez le configurez");
-                    jambeRisinstall = true;
-                    return response;
-                } 
-                else
+                if (PlayerPrefs.HasKey("JambeR_Position") && PlayerPrefs.HasKey("JambeR_Rotation"))
                 {
                     response.Add("Package déja installé");
                     return response;
+                }
+                else
+                {
+                    if (!jambeRisinstall)
+                    {
+                        response.Add("Le package \"jambeR\" est bien installé vous pouvez le configurez");
+                        jambeRisinstall = true;
+                        return response;
+                    }
+                    else
+                    {
+                        response.Add("Package déja installé");
+                        return response;
+                    }
                 }
             }
             else
             {
                 response.Add("Vous n'avez pas les droits nécessaire");
-
                 return response;
             }
         }
@@ -275,24 +352,34 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (jambeRisinstall)
+                if (PlayerPrefs.HasKey("JambeR_Position") && PlayerPrefs.HasKey("JambeR_Rotation"))
                 {
-                    if (!jambeRisConf)
-                    {
-                        response.Add("Fichiez crée vous pouvez ajoutez la jambe (réf : 984876) au robot");
-                        jambeRisConf = true;
-                        return response;
-                    }
-                    else
-                    {
-                        response.Add("Configuration déja en place");
-                        return response;
-                    }
+                    response.Add("Configuration déja en place");
+                    return response;
                 }
                 else
                 {
-                    response.Add("Aucune référence à jambeR dans vos package la config est impossible");
-                    return response;
+                    if (jambeRisinstall)
+                    {
+                        if (!jambeRisConf)
+                        {
+                            response.Add("Fichiez crée vous pouvez ajoutez la jambe (réf : 984876) au robot");
+                            jambeRisConf = true;
+                            PlayerPrefs.SetInt("JambeRIsConfig", 1);
+                            PlayerPrefs.Save();
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Configuration déja en place");
+                            return response;
+                        }
+                    }
+                    else
+                    {
+                        response.Add("Aucune référence à jambeR dans vos package la config est impossible");
+                        return response;
+                    }
                 }
             }
             else
@@ -307,24 +394,49 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (jambeRisConf)
+                if (PlayerPrefs.HasKey("PiedR_Position") && PlayerPrefs.HasKey("PiedR_Rotation"))
                 {
-                    if (!piedRisinstall)
-                    {
-                        response.Add("Le package \"piedR\" est bien installé vous pouvez le configurez");
-                        piedRisinstall = true;
-                        return response;
-                    }
-                    else
-                    {
-                        response.Add("Package déja installé");
-                        return response;
-                    }
+                    response.Add("Package déja installé");
+                    return response;
                 }
                 else
                 {
-                    response.Add("Erreur il manque des dépendances");
-                    return response;
+                    if (PlayerPrefs.HasKey("JambeR_Position") && PlayerPrefs.HasKey("JambeR_Rotation"))
+                    {
+                        if (!piedRisinstall)
+                        {
+                            response.Add("Le package \"piedR\" est bien installé vous pouvez le configurez");
+                            piedRisinstall = true;
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Package déja installé");
+                            return response;
+                        }
+                    }
+                    else
+                    {
+                        if (jambeRisConf)
+                        {
+                            if (!piedRisinstall)
+                            {
+                                response.Add("Le package \"piedR\" est bien installé vous pouvez le configurez");
+                                piedRisinstall = true;
+                                return response;
+                            }
+                            else
+                            {
+                                response.Add("Package déja installé");
+                                return response;
+                            }
+                        }
+                        else
+                        {
+                            response.Add("Erreur il manque des dépendances");
+                            return response;
+                        }
+                    }
                 }
             }
             else
@@ -339,24 +451,34 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (piedRisinstall)
+                if (PlayerPrefs.HasKey("PiedR_Position") && PlayerPrefs.HasKey("PiedR_Rotation"))
                 {
-                    if (!piedRisConf)
-                    {
-                        response.Add("Fichiez crée vous pouvez ajoutez le pied (réf : 9805542) au robot");
-                        piedRisConf = true;
-                        return response;
-                    }
-                    else
-                    {
-                        response.Add("Configuration déja en place");
-                        return response;
-                    }
+                    response.Add("Configuration déja en place");
+                    return response;
                 }
                 else
                 {
-                    response.Add("Aucune référence à piedR dans vos package la config est impossible");
-                    return response;
+                    if (piedRisinstall)
+                    {
+                        if (!piedRisConf)
+                        {
+                            response.Add("Fichiez crée vous pouvez ajoutez le pied (réf : 9805542) au robot");
+                            piedRisConf = true;
+                            PlayerPrefs.SetInt("PiedsRIsConfig", 1);
+                            PlayerPrefs.Save();
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Configuration déja en place");
+                            return response;
+                        }
+                    }
+                    else
+                    {
+                        response.Add("Aucune référence à piedR dans vos package la config est impossible");
+                        return response;
+                    }
                 }
             }
             else
@@ -371,16 +493,24 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (!brasGisinstall)
+                if (PlayerPrefs.HasKey("BrasG_Position") && PlayerPrefs.HasKey("BrasG_Rotation"))
                 {
-                    response.Add("Le package \"brasG\" est bien installé vous pouvez le configurez");
-                    brasGisinstall = true;
+                    response.Add("Package déja installé");
                     return response;
                 }
                 else
                 {
-                    response.Add("Package déja installé");
-                    return response;
+                    if (!brasGisinstall)
+                    {
+                        response.Add("Le package \"brasG\" est bien installé vous pouvez le configurez");
+                        brasGisinstall = true;
+                        return response;
+                    }
+                    else
+                    {
+                        response.Add("Package déja installé");
+                        return response;
+                    }
                 }
             }
             else
@@ -396,24 +526,34 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (brasGisinstall)
+                if (PlayerPrefs.HasKey("BrasG_Position") && PlayerPrefs.HasKey("BrasG_Rotation"))
                 {
-                    if (!brasGisConf)
-                    {
-                        response.Add("Fichiez crée vous pouvez ajoutez le bras (réf : 992374) au robot");
-                        brasGisConf = true;
-                        return response;
-                    }
-                    else
-                    {
-                        response.Add("Configuration déja en place");
-                        return response;
-                    }
+                    response.Add("Configuration déja en place");
+                    return response;
                 }
                 else
                 {
-                    response.Add("Aucune référence à brasG dans vos package la config est impossible");
-                    return response;
+                    if (brasGisinstall)
+                    {
+                        if (!brasGisConf)
+                        {
+                            response.Add("Fichiez crée vous pouvez ajoutez le bras (réf : 992374) au robot");
+                            brasGisConf = true;
+                            PlayerPrefs.SetInt("BrasGIsConfig", 1);
+                            PlayerPrefs.Save();
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Configuration déja en place");
+                            return response;
+                        }
+                    }
+                    else
+                    {
+                        response.Add("Aucune référence à brasG dans vos package la config est impossible");
+                        return response;
+                    }
                 }
             }
             else
@@ -428,24 +568,50 @@ public class Interpreter : MonoBehaviour
         {
             if(isAdmin)
             {
-                if (brasGisConf)
+                if (PlayerPrefs.HasKey("MainG_Position") && PlayerPrefs.HasKey("MainG_Rotation"))
                 {
-                    if (!mainGisinstall)
-                    {
-                        response.Add("Le package \"mainG\" est bien installé vous pouvez le configurez");
-                        mainGisinstall = true;
-                        return response;
-                    }
-                    else
-                    {
-                        response.Add("Package déja installé");
-                        return response;
-                    }
+                    response.Add("Package déja installé");
+                    return response;
                 }
                 else
                 {
-                    response.Add("Erreur il manque des dépendances");
-                    return response;
+                    if (PlayerPrefs.HasKey("BrasG_Position") && PlayerPrefs.HasKey("BrasG_Rotation"))
+                    {
+                        if (!mainGisinstall)
+                        {
+                            response.Add("Le package \"mainG\" est bien installé vous pouvez le configurez");
+                            mainGisinstall = true;
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Package déja installé");
+                            return response;
+                        }
+                    }
+                    else
+                    {
+                        if (brasGisConf)
+                        {
+                            if (!mainGisinstall)
+                            {
+                                response.Add("Le package \"mainG\" est bien installé vous pouvez le configurez");
+                                mainGisinstall = true;
+                                return response;
+                            }
+                            else
+                            {
+                                response.Add("Package déja installé");
+                                return response;
+                            }
+                        }
+                        else
+                        {
+                            response.Add("Erreur il manque des dépendances");
+                            return response;
+                        }
+                    }
+
                 }
             }
             else
@@ -459,31 +625,40 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (mainGisinstall)
+                if (PlayerPrefs.HasKey("MainG_Position") && PlayerPrefs.HasKey("MainG_Rotation"))
                 {
-                    if (!mainGisConf)
-                    {
-                        response.Add("Fichiez crée vous pouvez ajoutez la main (réf : 991985) au robot");
-                        mainGisConf = true;
-                        return response;
-                    }
-                    else
-                    {
-                        response.Add("Configuration déja en place");
-                        return response;
-
-                    }
+                    response.Add("Configuration déja en place");
+                    return response;
                 }
                 else
                 {
-                    response.Add("Aucune référence à mainG dans vos package la config est impossible");
-                    return response;
+                    if (mainGisinstall)
+                    {
+                        if (!mainGisConf)
+                        {
+                            response.Add("Fichiez crée vous pouvez ajoutez la main (réf : 991985) au robot");
+                            mainGisConf = true;
+                            PlayerPrefs.SetInt("MainGIsConfig", 1);
+                            PlayerPrefs.Save();
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Configuration déja en place");
+                            return response;
+
+                        }
+                    }
+                    else
+                    {
+                        response.Add("Aucune référence à mainG dans vos package la config est impossible");
+                        return response;
+                    }
                 }
             }
             else
             {
                 response.Add("Vous n'avez pas les droits nécessaire");
-
                 return response;
             }
 
@@ -493,16 +668,24 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (!jambeGisinstall)
+                if (PlayerPrefs.HasKey("JambeL_Position") && PlayerPrefs.HasKey("JambeL_Rotation"))
                 {
-                    response.Add("Le package \"jambeG\" est bien installé vous pouvez le configurez");
-                    jambeGisinstall = true;
+                    response.Add("Package déja installé");
                     return response;
                 }
                 else
                 {
-                    response.Add("Package déja installé");
-                    return response;
+                    if (!jambeGisinstall)
+                    {
+                        response.Add("Le package \"jambeG\" est bien installé vous pouvez le configurez");
+                        jambeGisinstall = true;
+                        return response;
+                    }
+                    else
+                    {
+                        response.Add("Package déja installé");
+                        return response;
+                    }
                 }
             }
             else
@@ -517,25 +700,35 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (jambeGisinstall)
+                if (PlayerPrefs.HasKey("JambeL_Position") && PlayerPrefs.HasKey("JambeL_Rotation"))
                 {
-                    if (!jambeGisConf)
-                    {
-                        response.Add("Fichiez crée vous pouvez ajoutez la jambe (réf : 994876) au robot");
-                        jambeGisConf = true;
-                        return response;
-                    }
-                    else
-                    {
-                        response.Add("Configuration déja en place");
-                        return response;
-                    }
-
+                    response.Add("Configuration déja en place");
+                    return response;
                 }
                 else
                 {
-                    response.Add("Aucune référence à jambeG dans vos package la config est impossible");
-                    return response;
+                    if (jambeGisinstall)
+                    {
+                        if (!jambeGisConf)
+                        {
+                            response.Add("Fichiez crée vous pouvez ajoutez la jambe (réf : 994876) au robot");
+                            jambeGisConf = true;
+                            PlayerPrefs.SetInt("JambeGIsConfig", 1);
+                            PlayerPrefs.Save();
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Configuration déja en place");
+                            return response;
+                        }
+
+                    }
+                    else
+                    {
+                        response.Add("Aucune référence à jambeG dans vos package la config est impossible");
+                        return response;
+                    }
                 }
             }
             else
@@ -550,24 +743,49 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (jambeGisConf)
+                if (PlayerPrefs.HasKey("PiedL_Position") && PlayerPrefs.HasKey("PiedL_Rotation"))
                 {
-                    if (!piedGisinstall)
-                    {
-                        response.Add("Le package \"piedG\" est bien installé vous pouvez le configurez");
-                        piedGisinstall = true;
-                        return response;
-                    }
-                    else
-                    {
-                        response.Add("Package déja installé");
-                        return response;
-                    }
+                    response.Add("Package déja installé");
+                    return response;
                 }
                 else
                 {
-                    response.Add("Erreur il manque des dépendances");
-                    return response;
+                    if (PlayerPrefs.HasKey("JambeL_Position") && PlayerPrefs.HasKey("JambeL_Rotation"))
+                    {
+                        if (!piedGisinstall)
+                        {
+                            response.Add("Le package \"piedG\" est bien installé vous pouvez le configurez");
+                            piedGisinstall = true;
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Package déja installé");
+                            return response;
+                        }
+                    }
+                    else
+                    {
+                        if (jambeGisConf)
+                        {
+                            if (!piedGisinstall)
+                            {
+                                response.Add("Le package \"piedG\" est bien installé vous pouvez le configurez");
+                                piedGisinstall = true;
+                                return response;
+                            }
+                            else
+                            {
+                                response.Add("Package déja installé");
+                                return response;
+                            }
+                        }
+                        else
+                        {
+                            response.Add("Erreur il manque des dépendances");
+                            return response;
+                        }
+                    }
                 }
             }
             else
@@ -582,24 +800,34 @@ public class Interpreter : MonoBehaviour
         {
             if (isAdmin)
             {
-                if (piedGisinstall)
+                if (PlayerPrefs.HasKey("PiedL_Position") && PlayerPrefs.HasKey("PiedL_Rotation"))
                 {
-                    if (!piedGisConf)
+                    response.Add("Configuration déja en place");
+                    return response;
+                }
+                else 
+                {
+                    if (piedGisinstall)
                     {
-                        response.Add("Fichiez crée vous pouvez ajoutez le pied (réf : 9905542) au robot");
-                        piedGisConf = true;
-                        return response;
+                        if (!piedGisConf)
+                        {
+                            response.Add("Fichiez crée vous pouvez ajoutez le pied (réf : 9905542) au robot");
+                            piedGisConf = true;
+                            PlayerPrefs.SetInt("PiedGIsConfig", 1);
+                            PlayerPrefs.Save();
+                            return response;
+                        }
+                        else
+                        {
+                            response.Add("Configuration déja en place");
+                            return response;
+                        }
                     }
                     else
                     {
-                        response.Add("Configuration déja en place");
+                        response.Add("Aucune référence à piedG dans vos package la config est impossible");
                         return response;
                     }
-                }
-                else
-                {
-                    response.Add("Aucune référence à piedG dans vos package la config est impossible");
-                    return response;
                 }
             }
             else
@@ -614,4 +842,14 @@ public class Interpreter : MonoBehaviour
             return response;
         }
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.E) && !isConnecter)
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
 }
+
+

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +30,111 @@ public class BuildRobot : MonoBehaviour
     bool dropPiedL = false;
     //HUD
     public GameObject iconR;
+
+    private void Start()
+    {
+        //PlayerPrefs.DeleteAll();
+        //PlayerPrefs.Save();
+
+        //brasR
+        if (PlayerPrefs.HasKey("BrasR_Position") && PlayerPrefs.HasKey("BrasR_Rotation"))
+        {
+            Vector3 savedPosition = JsonUtility.FromJson<Vector3>(PlayerPrefs.GetString("BrasR_Position"));
+            Quaternion savedRotation = JsonUtility.FromJson<Quaternion>(PlayerPrefs.GetString("BrasR_Rotation"));
+
+            pickUpRobot.brasR.transform.position = savedPosition;
+            pickUpRobot.brasR.transform.rotation = savedRotation;
+            pickUpRobot.brasR.SetActive(true);
+        }
+
+        //MainR
+        if (PlayerPrefs.HasKey("MainR_Position") && PlayerPrefs.HasKey("MainR_Rotation"))
+        {
+            Vector3 savedPosition = JsonUtility.FromJson<Vector3>(PlayerPrefs.GetString("MainR_Position"));
+            Quaternion savedRotation = JsonUtility.FromJson<Quaternion>(PlayerPrefs.GetString("MainR_Rotation"));
+
+            pickUpRobot.mainR.transform.position = savedPosition;
+            pickUpRobot.mainR.transform.rotation= savedRotation;
+            pickUpRobot.mainR.SetActive(true);
+        }
+
+        //tete
+        if (PlayerPrefs.HasKey("Tete_Position") && PlayerPrefs.HasKey("Tete_Rotation"))
+        {
+            Vector3 savedPosition = JsonUtility.FromJson<Vector3>(PlayerPrefs.GetString("Tete_Position"));
+            Quaternion savedRotation = JsonUtility.FromJson<Quaternion>(PlayerPrefs.GetString("Tete_Rotation"));
+
+            pickUpRobot.tete.transform.position = savedPosition;
+            pickUpRobot.tete.transform.rotation= savedRotation;
+            pickUpRobot.tete.SetActive(true);
+        }
+
+        //brasG
+        if (PlayerPrefs.HasKey("BrasG_Position") && PlayerPrefs.HasKey("BrasG_Rotation"))
+        {
+            Vector3 savedPosition = JsonUtility.FromJson<Vector3>(PlayerPrefs.GetString("BrasG_Position"));
+            Quaternion savedRotation = JsonUtility.FromJson<Quaternion>(PlayerPrefs.GetString("BrasG_Rotation"));
+
+            pickUpRobot.brasG.transform.position = savedPosition;
+            pickUpRobot.brasG.transform.rotation = savedRotation;
+            pickUpRobot.brasG.SetActive(true);
+        }
+
+        //mainG
+        if(PlayerPrefs.HasKey("MainG_Position") && PlayerPrefs.HasKey("MainG_Rotation"))
+        {
+            Vector3 savedPosition = JsonUtility.FromJson<Vector3>(PlayerPrefs.GetString("MainG_Position"));
+            Quaternion savedRotation = JsonUtility.FromJson<Quaternion>(PlayerPrefs.GetString("MainG_Rotation"));
+
+            pickUpRobot.mainG.transform.position = savedPosition;
+            pickUpRobot.mainG.transform.rotation = savedRotation;
+            pickUpRobot.mainG.SetActive(true);
+        }
+
+        //jambeR
+        if(PlayerPrefs.HasKey("JambeR_Position") && PlayerPrefs.HasKey("JambeR_Rotation"))
+        {
+            Vector3 savedPosition = JsonUtility.FromJson<Vector3>(PlayerPrefs.GetString("JambeR_Position"));
+            Quaternion savedRotation = JsonUtility.FromJson<Quaternion>(PlayerPrefs.GetString("JambeR_Rotation"));
+
+            pickUpRobot.jambeR.transform.position = savedPosition;
+            pickUpRobot.jambeR.transform.rotation = savedRotation;
+            pickUpRobot.jambeR.SetActive(true);
+        }
+
+        //piedR
+        if (PlayerPrefs.HasKey("PiedR_Position") && PlayerPrefs.HasKey("PiedR_Rotation"))
+        {
+            Vector3 savedPosition = JsonUtility.FromJson<Vector3>(PlayerPrefs.GetString("PiedR_Position"));
+            Quaternion savedRotation = JsonUtility.FromJson<Quaternion>(PlayerPrefs.GetString("PiedR_Rotation"));
+
+            pickUpRobot.piedR.transform.position = savedPosition;
+            pickUpRobot.piedR.transform.rotation = savedRotation;
+            pickUpRobot.piedR.SetActive(true);
+        }
+
+        //jambeL
+        if(PlayerPrefs.HasKey("JambeL_Position") && PlayerPrefs.HasKey("JambeL_Rotation"))
+        {
+            Vector3 savedPosition = JsonUtility.FromJson<Vector3>(PlayerPrefs.GetString("JambeL_Position"));
+            Quaternion savedRotation = JsonUtility.FromJson<Quaternion>(PlayerPrefs.GetString("JambeL_Rotation"));
+
+            pickUpRobot.jambeL.transform.position = savedPosition;
+            pickUpRobot.jambeL.transform.rotation = savedRotation;
+            pickUpRobot.jambeL.SetActive(true);
+        }
+
+        //piedL
+        if(PlayerPrefs.HasKey("PiedL_Position") && PlayerPrefs.HasKey("PiedL_Rotation"))
+        {
+            Vector3 savedPosition = JsonUtility.FromJson<Vector3>(PlayerPrefs.GetString("PiedL_Position"));
+            Quaternion savedRotation = JsonUtility.FromJson<Quaternion>(PlayerPrefs.GetString("PiedL_Rotation"));
+
+            pickUpRobot.piedL.transform.localPosition = savedPosition;
+            pickUpRobot.piedL.transform.rotation = savedRotation;
+            pickUpRobot.piedL.SetActive(true);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -290,6 +396,10 @@ public class BuildRobot : MonoBehaviour
             pickUpRobot.brasR.SetActive(true);
             pickUpRobot.triggerEnabled = false;
             inventory.inventory = 0;
+
+            PlayerPrefs.SetString("BrasR_Position", JsonUtility.ToJson(pickUpRobot.brasR.transform.position));
+            PlayerPrefs.SetString("BrasR_Rotation", JsonUtility.ToJson(pickUpRobot.brasR.transform.rotation));
+            PlayerPrefs.Save();
         }
         //MainR
         if (Input.GetKeyUp(KeyCode.R) && dropMainR)
@@ -300,6 +410,10 @@ public class BuildRobot : MonoBehaviour
             pickUpRobot.mainR.SetActive(true);
             pickUpRobot.mainRtriggerEnabled = false;
             inventory.inventory = 0;
+
+            PlayerPrefs.SetString("MainR_Position", JsonUtility.ToJson(pickUpRobot.mainR.transform.position));
+            PlayerPrefs.SetString("MainR_Rotation", JsonUtility.ToJson(pickUpRobot.mainR.transform.rotation));
+            PlayerPrefs.Save();
         }
         //tete
         if (Input.GetKeyUp(KeyCode.R) && dropTete)
@@ -310,6 +424,10 @@ public class BuildRobot : MonoBehaviour
             pickUpRobot.tete.SetActive(true);
             pickUpRobot.teteTriggerEnabled = false;
             inventory.inventory = 0;
+
+            PlayerPrefs.SetString("Tete_Position", JsonUtility.ToJson(pickUpRobot.tete.transform.position));
+            PlayerPrefs.SetString("Tete_Rotation", JsonUtility.ToJson(pickUpRobot.tete.transform.rotation));
+            PlayerPrefs.Save();
         }
         //brasG
         if (Input.GetKeyUp(KeyCode.R) && dropBrasG)
@@ -320,6 +438,10 @@ public class BuildRobot : MonoBehaviour
             pickUpRobot.brasG.SetActive(true);
             pickUpRobot.brasGtriggerEnabled = false;
             inventory.inventory = 0;
+
+            PlayerPrefs.SetString("BrasG_Position", JsonUtility.ToJson(pickUpRobot.brasG.transform.position));
+            PlayerPrefs.SetString("BrasG_Rotation", JsonUtility.ToJson(pickUpRobot.brasG.transform.rotation));
+            PlayerPrefs.Save();
         }
         //mainG
         if (Input.GetKeyUp(KeyCode.R) && dropMainG)
@@ -330,6 +452,10 @@ public class BuildRobot : MonoBehaviour
             pickUpRobot.mainG.SetActive(true);
             pickUpRobot.mainGtriggerEnabled = false;
             inventory.inventory = 0;
+
+            PlayerPrefs.SetString("MainG_Position", JsonUtility.ToJson(pickUpRobot.mainG.transform.position));
+            PlayerPrefs.SetString("MainG_Rotation", JsonUtility.ToJson(pickUpRobot.mainG.transform.rotation));
+            PlayerPrefs.Save();
         }
         //jambeR
         if (Input.GetKeyUp(KeyCode.R) && dropjambeR)
@@ -340,6 +466,10 @@ public class BuildRobot : MonoBehaviour
             pickUpRobot.jambeR.SetActive(true);
             pickUpRobot.jambeRtriggerEnabled = false;
             inventory.inventory = 0;
+
+            PlayerPrefs.SetString("JambeR_Position", JsonUtility.ToJson(pickUpRobot.jambeR.transform.position));
+            PlayerPrefs.SetString("JambeR_Rotation", JsonUtility.ToJson(pickUpRobot.jambeR.transform.rotation));
+            PlayerPrefs.Save();
         }
         //piedR
         if (Input.GetKeyUp(KeyCode.R) && dropPiedR)
@@ -350,6 +480,10 @@ public class BuildRobot : MonoBehaviour
             pickUpRobot.piedR.SetActive(true);
             pickUpRobot.piedRtriggerEnabled = false;
             inventory.inventory = 0;
+
+            PlayerPrefs.SetString("PiedR_Position", JsonUtility.ToJson(pickUpRobot.piedR.transform.position));
+            PlayerPrefs.SetString("PiedR_Rotation", JsonUtility.ToJson(pickUpRobot.piedR.transform.rotation));
+            PlayerPrefs.Save();
         }
         //jambeL
         if (Input.GetKeyUp(KeyCode.R) && dropjambeL)
@@ -360,6 +494,10 @@ public class BuildRobot : MonoBehaviour
             pickUpRobot.jambeL.SetActive(true);
             pickUpRobot.jambeLtriggerEnabled = false;
             inventory.inventory = 0;
+
+            PlayerPrefs.SetString("JambeL_Position", JsonUtility.ToJson(pickUpRobot.jambeL.transform.position));
+            PlayerPrefs.SetString("JambeL_Rotation", JsonUtility.ToJson(pickUpRobot.jambeL.transform.rotation));
+            PlayerPrefs.Save();
         }
         //piedL
         if (Input.GetKeyUp(KeyCode.R) && dropPiedL)
@@ -370,6 +508,10 @@ public class BuildRobot : MonoBehaviour
             pickUpRobot.piedL.SetActive(true);
             pickUpRobot.piedLtriggerEnabled = false;
             inventory.inventory = 0;
+
+            PlayerPrefs.SetString("PiedL_Position", JsonUtility.ToJson(pickUpRobot.piedL.transform.localPosition));
+            PlayerPrefs.SetString("PiedL_Rotation", JsonUtility.ToJson(pickUpRobot.piedL.transform.rotation));
+            PlayerPrefs.Save();
         }
     }
 }

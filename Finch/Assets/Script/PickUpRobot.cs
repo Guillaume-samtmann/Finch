@@ -79,18 +79,27 @@ public class PickUpRobot : MonoBehaviour
         //mainR
         if (other.gameObject.tag == "mainR")
         {
-            if (mainRtriggerEnabled == false || brasAttach == false)
-            {
-                mainRPickUp = false;
-                iconE.SetActive(false);
-                Debug.Log("Main droite impossible a récupérer car le bras n'est pas posé");
-            }
-            else
+            if (PlayerPrefs.HasKey("BrasR_Position") && PlayerPrefs.HasKey("BrasR_Rotation"))
             {
                 mainRPickUp = true;
                 mainR = other.gameObject;
                 iconE.SetActive(true);
             }
+            else
+            {
+                if (mainRtriggerEnabled == false || brasAttach == false)
+                {
+                    mainRPickUp = false;
+                    iconE.SetActive(false);
+                    Debug.Log("Main droite impossible a récupérer car le bras n'est pas posé");
+                }
+                else
+                {
+                    mainRPickUp = true;
+                    mainR = other.gameObject;
+                    iconE.SetActive(true);
+                }
+            }    
         }
         //tete
         if (other.gameObject.tag == "tete")
@@ -125,18 +134,27 @@ public class PickUpRobot : MonoBehaviour
         //mainG
         if (other.gameObject.tag == "mainG")
         {
-            if (mainGtriggerEnabled == false || brasGAttach == false)
-            {
-                mainGPickUp = false;
-                iconE.SetActive(false);
-                Debug.Log("Main gauche impossible a récupérer car le bras n'est pas posé");
-            }
-            else
+            if (PlayerPrefs.HasKey("BrasG_Position") && PlayerPrefs.HasKey("BrasG_Rotation"))
             {
                 mainGPickUp = true;
                 mainG = other.gameObject;
                 iconE.SetActive(true);
             }
+            else
+            {
+                if (mainGtriggerEnabled == false || brasGAttach == false)
+                {
+                    mainGPickUp = false;
+                    iconE.SetActive(false);
+                    Debug.Log("Main gauche impossible a récupérer car le bras n'est pas posé");
+                }
+                else
+                {
+                    mainGPickUp = true;
+                    mainG = other.gameObject;
+                    iconE.SetActive(true);
+                }
+            }      
         }
         //jambeR
         if (other.gameObject.tag == "jambeR")
@@ -156,17 +174,26 @@ public class PickUpRobot : MonoBehaviour
         //piedR
         if (other.gameObject.tag == "piedR")
         {
-            if (piedRtriggerEnabled == false || jambeRAttach == false)
-            {
-                piedRPickUp = false;
-                iconE.SetActive(false);
-                Debug.Log("Pied droit impossible a récupérer car la jambe n'est pas posé");
-            }
-            else
+            if (PlayerPrefs.HasKey("JambeR_Position") && PlayerPrefs.HasKey("JambeR_Rotation"))
             {
                 piedRPickUp = true;
                 piedR = other.gameObject;
                 iconE.SetActive(true);
+            }
+            else
+            {
+                if (piedRtriggerEnabled == false || jambeRAttach == false)
+                {
+                    piedRPickUp = false;
+                    iconE.SetActive(false);
+                    Debug.Log("Pied droit impossible a récupérer car la jambe n'est pas posé");
+                }
+                else
+                {
+                    piedRPickUp = true;
+                    piedR = other.gameObject;
+                    iconE.SetActive(true);
+                }
             }
         }
         //jambeL
@@ -185,19 +212,28 @@ public class PickUpRobot : MonoBehaviour
             }
         }
         //piedL
-        if (other.gameObject.tag == "piedL")
+        if (PlayerPrefs.HasKey("JambeL_Position") && PlayerPrefs.HasKey("JambeL_Rotation"))
         {
-            if (piedLtriggerEnabled == false || jambeLAttach == false)
+            piedLPickUp = true;
+            piedL = other.gameObject;
+            iconE.SetActive(true);
+        }
+        else
+        {
+            if (other.gameObject.tag == "piedL")
             {
-                piedLPickUp = false;
-                iconE.SetActive(false);
-                Debug.Log("Pied gauche impossible a récupérer car la jambe n'est pas posé");
-            }
-            else
-            {
-                piedLPickUp = true;
-                piedL = other.gameObject;
-                iconE.SetActive(true);
+                if (piedLtriggerEnabled == false || jambeLAttach == false)
+                {
+                    piedLPickUp = false;
+                    iconE.SetActive(false);
+                    Debug.Log("Pied gauche impossible a récupérer car la jambe n'est pas posé");
+                }
+                else
+                {
+                    piedLPickUp = true;
+                    piedL = other.gameObject;
+                    iconE.SetActive(true);
+                }
             }
         }
     }
@@ -262,89 +298,166 @@ public class PickUpRobot : MonoBehaviour
         // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && brasRPickUp)
+        if (PlayerPrefs.GetInt("BrasRIsConfig", 0) == 1)
         {
-            brasR.SetActive(false);
-            iconE.SetActive(false);
-            brasRPickUp=false;
-            brasRIsPickup = true;
-            inventory.inventory = 1;
-            brasAttach = true;
+            if (Input.GetKeyDown(KeyCode.E) && brasRPickUp)
+            {
+                brasR.SetActive(false);
+                iconE.SetActive(false);
+                brasRPickUp = false;
+                brasRIsPickup = true;
+                inventory.inventory = 1;
+                brasAttach = true;
+            }
+            //Debug.Log("BrasR config");
+        } 
+        else
+        {
+            //Debug.Log("BrasR non config");
         }
+
         //mainR
-        if (Input.GetKeyDown(KeyCode.E) && mainRPickUp && brasAttach)
+        if (PlayerPrefs.GetInt("MainRIsConfig", 0) == 1)
         {
-            mainR.SetActive(false);
-            iconE.SetActive(false);
-            mainRPickUp = false;
-            mainRIsPickup = true;
-            inventory.inventory = 1;
+            if (Input.GetKeyDown(KeyCode.E) && mainRPickUp)
+            {
+                mainR.SetActive(false);
+                iconE.SetActive(false);
+                mainRPickUp = false;
+                mainRIsPickup = true;
+                inventory.inventory = 1;
+            }
+            //Debug.Log("MainR config");
         }
-        //tete
-        if (Input.GetKeyDown(KeyCode.E) && tetePickUp)
+        else
         {
-            tete.SetActive(false);
-            iconE.SetActive(false);
-            tetePickUp = false;
-            teteIsPickup = true;
-            inventory.inventory = 1;
+            //Debug.Log("MainR non config");
+        }
+            
+        //tete
+        if(PlayerPrefs.GetInt("TeteIsConfig", 0) == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.E) && tetePickUp)
+            {
+                tete.SetActive(false);
+                iconE.SetActive(false);
+                tetePickUp = false;
+                teteIsPickup = true;
+                inventory.inventory = 1;
+            }
+            //Debug.Log("Tete config");
+        }
+        else
+        {
+            //Debug.Log("Tete non config");
+        }
+
+        //jambeR
+        if (PlayerPrefs.GetInt("JambeRIsConfig", 0) == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.E) && jambeRPickUp)
+            {
+                jambeR.SetActive(false);
+                iconE.SetActive(false);
+                jambeRPickUp = false;
+                jambeRIsPickup = true;
+                inventory.inventory = 1;
+                jambeRAttach = true;
+            }
+            //Debug.Log("JambeR config");
+        }
+        else
+        {
+            //Debug.Log("JambeR non config");
+        }
+
+        //piedR
+        if (PlayerPrefs.GetInt("PiedsRIsConfig", 0) == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.E) && piedRPickUp)
+            {
+                piedR.SetActive(false);
+                iconE.SetActive(false);
+                piedRPickUp = false;
+                piedRIsPickup = true;
+                inventory.inventory = 1;
+            }
+            //Debug.Log("PiedR config");
+        }
+        else
+        {
+            //Debug.Log("PiedR non config");
         }
         //brasG
-        if (Input.GetKeyDown(KeyCode.E) && brasGPickUp)
+        if (PlayerPrefs.GetInt("BrasGIsConfig", 0) == 1)
         {
-            brasG.SetActive(false);
-            iconE.SetActive(false);
-            brasGPickUp = false;
-            brasGIsPickup = true;
-            inventory.inventory = 1;
-            brasGAttach = true;
+            if (Input.GetKeyDown(KeyCode.E) && brasGPickUp)
+            {
+                brasG.SetActive(false);
+                iconE.SetActive(false);
+                brasGPickUp = false;
+                brasGIsPickup = true;
+                inventory.inventory = 1;
+                brasGAttach = true;
+            }
+            //Debug.Log("BrasG config");
+        }
+        else
+        {
+            //Debug.Log("BrasG non config");
         }
         //mainG
-        if (Input.GetKeyDown(KeyCode.E) && mainGPickUp && brasGAttach)
+        if (PlayerPrefs.GetInt("MainGIsConfig", 0) == 1)
         {
-            mainG.SetActive(false);
-            iconE.SetActive(false);
-            mainGPickUp = false;
-            mainGIsPickup = true;
-            inventory.inventory = 1;
+            if (Input.GetKeyDown(KeyCode.E) && mainGPickUp)
+            {
+                mainG.SetActive(false);
+                iconE.SetActive(false);
+                mainGPickUp = false;
+                mainGIsPickup = true;
+                inventory.inventory = 1;
+            }
+            //Debug.Log("MainG config");
         }
-        //jambeR
-        if (Input.GetKeyDown(KeyCode.E) && jambeRPickUp)
+        else
         {
-            jambeR.SetActive(false);
-            iconE.SetActive(false);
-            jambeRPickUp = false;
-            jambeRIsPickup = true;
-            inventory.inventory = 1;
-            jambeRAttach = true;
-        }
-        //piedR
-        if (Input.GetKeyDown(KeyCode.E) && piedRPickUp && jambeRAttach)
-        {
-            piedR.SetActive(false);
-            iconE.SetActive(false);
-            piedRPickUp = false;
-            piedRIsPickup = true;
-            inventory.inventory = 1;
+            //Debug.Log("MainG non config");
         }
         //jambeL
-        if (Input.GetKeyDown(KeyCode.E) && jambeLPickUp)
+        if (PlayerPrefs.GetInt("JambeGIsConfig", 0) == 1)
         {
-            jambeL.SetActive(false);
-            iconE.SetActive(false);
-            jambeLPickUp = false;
-            jambeLIsPickup = true;
-            inventory.inventory = 1;
-            jambeLAttach = true;
+            if (Input.GetKeyDown(KeyCode.E) && jambeLPickUp)
+            {
+                jambeL.SetActive(false);
+                iconE.SetActive(false);
+                jambeLPickUp = false;
+                jambeLIsPickup = true;
+                inventory.inventory = 1;
+                jambeLAttach = true;
+            }
+            //Debug.Log("JambeG config");
         }
-        //piedL
-        if (Input.GetKeyDown(KeyCode.E) && piedLPickUp && jambeLAttach)
+        else
         {
-            piedL.SetActive(false);
-            iconE.SetActive(false);
-            piedLPickUp = false;
-            piedLIsPickup = true;
-            inventory.inventory = 1;
+            //Debug.Log("JambeG non config");
+        }
+
+        //piedL
+        if (PlayerPrefs.GetInt("PiedGIsConfig", 0) == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.E) && piedLPickUp)
+            {
+                piedL.SetActive(false);
+                iconE.SetActive(false);
+                piedLPickUp = false;
+                piedLIsPickup = true;
+                inventory.inventory = 1;
+            }
+            //Debug.Log("PiedG config");
+        }
+        else
+        {
+            //Debug.Log("PiedG non config");
         }
     }
 }
