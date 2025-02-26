@@ -391,8 +391,8 @@ public class BuildRobot : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R) && dropBrasR)
         {
             iconR.SetActive(false);
-            pickUpRobot.brasR.transform.position = new Vector3(1.869f, 1.269f, -1.842f);
-            pickUpRobot.brasR.transform.rotation = Quaternion.Euler(-89.98f, 0, 0);
+            pickUpRobot.brasR.transform.localPosition = new Vector3(-89.41f, 15.35f, 19.59f);
+            pickUpRobot.brasR.transform.rotation = Quaternion.Euler(-90f, 0, 90);
             pickUpRobot.brasR.SetActive(true);
             pickUpRobot.triggerEnabled = false;
             inventory.inventory = 0;
@@ -405,8 +405,8 @@ public class BuildRobot : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R) && dropMainR)
         {
             iconR.SetActive(false);
-            pickUpRobot.mainR.transform.localPosition = new Vector3(-3.88f, 5.371f, 0.035f);
-            pickUpRobot.mainR.transform.rotation = Quaternion.Euler(-98.909f, 0, 0);
+            pickUpRobot.mainR.transform.localPosition = new Vector3(-88.01f, 7.81f, 21.74f);
+            pickUpRobot.mainR.transform.rotation = Quaternion.Euler(-90.42f, 90, 0);
             pickUpRobot.mainR.SetActive(true);
             pickUpRobot.mainRtriggerEnabled = false;
             inventory.inventory = 0;
@@ -419,8 +419,8 @@ public class BuildRobot : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R) && dropTete)
         {
             iconR.SetActive(false);
-            pickUpRobot.tete.transform.localPosition = new Vector3(0.07f, 13.94f, 0.08f);
-            pickUpRobot.tete.transform.rotation = Quaternion.Euler(-90f, 0, 0);
+            pickUpRobot.tete.transform.localPosition = new Vector3(-87.78f, 16.01f, 17.88f);
+            pickUpRobot.tete.transform.rotation = Quaternion.Euler(-83.18f, 90, 0);
             pickUpRobot.tete.SetActive(true);
             pickUpRobot.teteTriggerEnabled = false;
             inventory.inventory = 0;
@@ -433,8 +433,8 @@ public class BuildRobot : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R) && dropBrasG)
         {
             iconR.SetActive(false);
-            pickUpRobot.brasG.transform.localPosition = new Vector3(1.768f, 12.99f, -1.43f);
-            pickUpRobot.brasG.transform.rotation = Quaternion.Euler(-90f, 0, 180f);
+            pickUpRobot.brasG.transform.localPosition = new Vector3(-89.55f, 15.32f, 16.05f);
+            pickUpRobot.brasG.transform.rotation = Quaternion.Euler(-90f, 0, 270f);
             pickUpRobot.brasG.SetActive(true);
             pickUpRobot.brasGtriggerEnabled = false;
             inventory.inventory = 0;
@@ -447,8 +447,8 @@ public class BuildRobot : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R) && dropMainG)
         {
             iconR.SetActive(false);
-            pickUpRobot.mainG.transform.localPosition = new Vector3(3.62f, 5.21f, -0.88f);
-            pickUpRobot.mainG.transform.rotation = Quaternion.Euler(-68.79f, 163.54f, 14.87f);
+            pickUpRobot.mainG.transform.localPosition = new Vector3(-88.96f, 7.56f, 14.25f);
+            pickUpRobot.mainG.transform.rotation = Quaternion.Euler(-60.60f, 260.96f, 12.71f);
             pickUpRobot.mainG.SetActive(true);
             pickUpRobot.mainGtriggerEnabled = false;
             inventory.inventory = 0;
@@ -461,8 +461,8 @@ public class BuildRobot : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R) && dropjambeR)
         {
             iconR.SetActive(false);
-            pickUpRobot.jambeR.transform.localPosition = new Vector3(-1.48f, 4.35f, -0.31f);
-            pickUpRobot.jambeR.transform.rotation = Quaternion.Euler(-89.98f, 0, 0);
+            pickUpRobot.jambeR.transform.localPosition = new Vector3(-88.34f, 6.79f, 19.27f);
+            pickUpRobot.jambeR.transform.rotation = Quaternion.Euler(-90f, 0, 96.14f);
             pickUpRobot.jambeR.SetActive(true);
             pickUpRobot.jambeRtriggerEnabled = false;
             inventory.inventory = 0;
@@ -475,8 +475,8 @@ public class BuildRobot : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R) && dropPiedR)
         {
             iconR.SetActive(false);
-            pickUpRobot.piedR.transform.localPosition = new Vector3(-1.46f, 0f, 0f);
-            pickUpRobot.piedR.transform.rotation = Quaternion.Euler(-89.98f, 0, 0);
+            pickUpRobot.piedR.transform.localPosition = new Vector3(-88.06f, 2.42f, 19.22f);
+            pickUpRobot.piedR.transform.rotation = Quaternion.Euler(-85.53f, 90.01f, 4.30f);
             pickUpRobot.piedR.SetActive(true);
             pickUpRobot.piedRtriggerEnabled = false;
             inventory.inventory = 0;
@@ -489,8 +489,8 @@ public class BuildRobot : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R) && dropjambeL)
         {
             iconR.SetActive(false);
-            pickUpRobot.jambeL.transform.localPosition = new Vector3(1.52f, 4.35f, -0.31f);
-            pickUpRobot.jambeL.transform.rotation = Quaternion.Euler(-89.98f, 0, 0);
+            pickUpRobot.jambeL.transform.localPosition = new Vector3(-88.59f, 6.82f, 16.439f);
+            pickUpRobot.jambeL.transform.rotation = Quaternion.Euler(-90f, -180, 90);
             pickUpRobot.jambeL.SetActive(true);
             pickUpRobot.jambeLtriggerEnabled = false;
             inventory.inventory = 0;
@@ -503,8 +503,8 @@ public class BuildRobot : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R) && dropPiedL)
         {
             iconR.SetActive(false);
-            pickUpRobot.piedL.transform.localPosition = new Vector3(1.54f, 0f, 0f);
-            pickUpRobot.piedL.transform.rotation = Quaternion.Euler(-89.98f, 0, 0);
+            pickUpRobot.piedL.transform.localPosition = new Vector3(-88.09f, 2.61f, 16.373f);
+            pickUpRobot.piedL.transform.rotation = Quaternion.Euler(-79.85f, 89.88f, 0.11f);
             pickUpRobot.piedL.SetActive(true);
             pickUpRobot.piedLtriggerEnabled = false;
             inventory.inventory = 0;
