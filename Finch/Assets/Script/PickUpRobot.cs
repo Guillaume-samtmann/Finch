@@ -102,7 +102,7 @@ public class PickUpRobot : MonoBehaviour
             }    
         }
         //tete
-        if (other.gameObject.tag == "tete")
+        /*if (other.gameObject.tag == "tete")
         {
             if (teteTriggerEnabled == false)
             {
@@ -115,9 +115,9 @@ public class PickUpRobot : MonoBehaviour
                 tete = other.gameObject;
                 iconE.SetActive(true);
             }
-        }
+        }*/
         //brasG
-        if (other.gameObject.tag == "BrasG")
+        /*if (other.gameObject.tag == "BrasG")
         {
             if (brasGtriggerEnabled == false)
             {
@@ -130,7 +130,7 @@ public class PickUpRobot : MonoBehaviour
                 brasG = other.gameObject;
                 iconE.SetActive(true);
             }
-        }
+        }*/
         //mainG
         if (other.gameObject.tag == "mainG")
         {
@@ -335,7 +335,7 @@ public class PickUpRobot : MonoBehaviour
         }
             
         //tete
-        if(PlayerPrefs.GetInt("TeteIsConfig", 0) == 1)
+        /*if(PlayerPrefs.GetInt("TeteIsConfig", 0) == 1)
         {
             if (Input.GetKeyDown(KeyCode.E) && tetePickUp)
             {
@@ -350,7 +350,7 @@ public class PickUpRobot : MonoBehaviour
         else
         {
             //Debug.Log("Tete non config");
-        }
+        }*/
 
         //jambeR
         if (PlayerPrefs.GetInt("JambeRIsConfig", 0) == 1)
@@ -389,7 +389,7 @@ public class PickUpRobot : MonoBehaviour
             //Debug.Log("PiedR non config");
         }
         //brasG
-        if (PlayerPrefs.GetInt("BrasGIsConfig", 0) == 1)
+        /*if (PlayerPrefs.GetInt("BrasGIsConfig", 0) == 1)
         {
             if (Input.GetKeyDown(KeyCode.E) && brasGPickUp)
             {
@@ -405,7 +405,7 @@ public class PickUpRobot : MonoBehaviour
         else
         {
             //Debug.Log("BrasG non config");
-        }
+        }*/
         //mainG
         if (PlayerPrefs.GetInt("MainGIsConfig", 0) == 1)
         {

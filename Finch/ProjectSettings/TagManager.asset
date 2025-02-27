@@ -24,6 +24,7 @@ TagManager:
   - piedL
   - triggeurPiedL
   - openOrdinateur
+  - pieceRobots
   layers:
   - Default
   - TransparentFX
