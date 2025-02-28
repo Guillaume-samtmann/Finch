@@ -11,25 +11,29 @@ public class BuildRobot : MonoBehaviour
     public PickUpRobot pickUpRobot;
     public Inventory inventory;
     //brasR
-    bool dropBrasR = false;
+    //bool dropBrasR = false;
     //mainR
     bool dropMainR = false;
     //tete
-    bool dropTete = false;
+    //bool dropTete = false;
     //brasG
     bool dropBrasG = false;
     //mainG
     bool dropMainG = false;
     //jambeR
-    bool dropjambeR = false;
+    //bool dropjambeR = false;
     //piedR
     bool dropPiedR = false;
     //jambeL
-    bool dropjambeL = false;
+    //bool dropjambeL = false;
     //piedL
     bool dropPiedL = false;
     //HUD
     public GameObject iconR;
+
+    //bool RobotIsComplet = false;
+
+    public int pieceRobots = 0;
 
     private void Start()
     {
@@ -134,11 +138,48 @@ public class BuildRobot : MonoBehaviour
             pickUpRobot.piedL.transform.rotation = savedRotation;
             pickUpRobot.piedL.SetActive(true);
         }
+
+        if (PlayerPrefs.HasKey("TeteAttach"))
+        {
+            pieceRobots++;
+        }
+        if (PlayerPrefs.HasKey("BrasRAttach"))
+        {
+            pieceRobots++;
+        }
+        if (PlayerPrefs.HasKey("MainRAttach"))
+        {
+            pieceRobots++;
+        }
+        if (PlayerPrefs.HasKey("JambeRAttach"))
+        {
+            pieceRobots++;
+        }
+        if (PlayerPrefs.HasKey("PiedRAttach"))
+        {
+            pieceRobots++;
+        }
+        if (PlayerPrefs.HasKey("BrasGAttach"))
+        {
+            pieceRobots++;
+        }
+        if (PlayerPrefs.HasKey("MainGAttach"))
+        {
+            pieceRobots++;
+        }
+        if (PlayerPrefs.HasKey("JambeLAttach"))
+        {
+            pieceRobots++;
+        }
+        if (PlayerPrefs.HasKey("PiedLAttach"))
+        {
+            pieceRobots++;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "triggeurBrasR")
+        /*if (other.gameObject.tag == "triggeurBrasR")
         {
             if (pickUpRobot.brasRIsPickup == false)
             {
@@ -157,7 +198,7 @@ public class BuildRobot : MonoBehaviour
                     iconR.SetActive(true);
                 }
             }
-        }
+        }*/
         //mainR
         if (other.gameObject.tag == "triggeurMainR")
         {
@@ -180,7 +221,7 @@ public class BuildRobot : MonoBehaviour
             }
         }
         //tete
-        if (other.gameObject.tag == "triggeurTete")
+        /*if (other.gameObject.tag == "triggeurTete")
         {
             if (pickUpRobot.teteIsPickup == false)
             {
@@ -199,7 +240,7 @@ public class BuildRobot : MonoBehaviour
                     iconR.SetActive(true);
                 }
             }
-        }
+        }*/
         //brasG
         if (other.gameObject.tag == "triggeurBrasG")
         {
@@ -243,7 +284,7 @@ public class BuildRobot : MonoBehaviour
             }
         }
         //jambeR
-        if (other.gameObject.tag == "triggeurJambeR")
+        /*if (other.gameObject.tag == "triggeurJambeR")
         {
             if (pickUpRobot.jambeRIsPickup == false)
             {
@@ -262,7 +303,7 @@ public class BuildRobot : MonoBehaviour
                     iconR.SetActive(true);
                 }
             }
-        }
+        }*/
         //piedR
         if (other.gameObject.tag == "triggeurPiedR")
         {
@@ -285,7 +326,7 @@ public class BuildRobot : MonoBehaviour
             }
         }
         //jambeL
-        if (other.gameObject.tag == "triggeurJambeL")
+        /*if (other.gameObject.tag == "triggeurJambeL")
         {
             if (pickUpRobot.jambeLIsPickup == false)
             {
@@ -304,7 +345,7 @@ public class BuildRobot : MonoBehaviour
                     iconR.SetActive(true);
                 }
             }
-        }
+        }*/
         //piedL
         if (other.gameObject.tag == "triggeurPiedL")
         {
@@ -330,11 +371,11 @@ public class BuildRobot : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "triggeurBrasR")
+        /*if (other.gameObject.tag == "triggeurBrasR")
         {
             dropBrasR = false;
             iconR.SetActive(false);
-        }
+        }*/
         //MainR
         if (other.gameObject.tag == "triggeurMainR")
         {
@@ -342,11 +383,11 @@ public class BuildRobot : MonoBehaviour
             iconR.SetActive(false);
         }
         //tete
-        if (other.gameObject.tag == "triggeurTete")
+        /*if (other.gameObject.tag == "triggeurTete")
         {
             dropTete = false;
             iconR.SetActive(false);
-        }
+        }*/
         //brasG
         if (other.gameObject.tag == "triggeurBrasG")
         {
@@ -360,11 +401,11 @@ public class BuildRobot : MonoBehaviour
             iconR.SetActive(false);
         }
         //JambeR
-        if (other.gameObject.tag == "triggeurJambeR")
+        /*if (other.gameObject.tag == "triggeurJambeR")
         {
-            dropjambeR = false;
+            //dropjambeR = false;
             iconR.SetActive(false);
-        }
+        }*/
         //PiedR
         if (other.gameObject.tag == "triggeurPiedR")
         {
@@ -372,11 +413,11 @@ public class BuildRobot : MonoBehaviour
             iconR.SetActive(false);
         }
         //JambeL
-        if (other.gameObject.tag == "triggeurJambeL")
+        /*if (other.gameObject.tag == "triggeurJambeL")
         {
             dropjambeL = false;
             iconR.SetActive(false);
-        }
+        }*/
         //PiedL
         if (other.gameObject.tag == "triggeurPiedL")
         {
@@ -388,7 +429,7 @@ public class BuildRobot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.R) && dropBrasR)
+        /*if (Input.GetKeyUp(KeyCode.R) && dropBrasR)
         {
             iconR.SetActive(false);
             pickUpRobot.brasR.transform.localPosition = new Vector3(-89.41f, 15.35f, 19.59f);
@@ -400,7 +441,11 @@ public class BuildRobot : MonoBehaviour
             PlayerPrefs.SetString("BrasR_Position", JsonUtility.ToJson(pickUpRobot.brasR.transform.position));
             PlayerPrefs.SetString("BrasR_Rotation", JsonUtility.ToJson(pickUpRobot.brasR.transform.rotation));
             PlayerPrefs.Save();
-        }
+
+            pieceRobots++;
+            PlayerPrefs.SetInt("BrasRAttach", 1);
+            PlayerPrefs.Save();
+        }*/
         //MainR
         if (Input.GetKeyUp(KeyCode.R) && dropMainR)
         {
@@ -414,9 +459,13 @@ public class BuildRobot : MonoBehaviour
             PlayerPrefs.SetString("MainR_Position", JsonUtility.ToJson(pickUpRobot.mainR.transform.position));
             PlayerPrefs.SetString("MainR_Rotation", JsonUtility.ToJson(pickUpRobot.mainR.transform.rotation));
             PlayerPrefs.Save();
+
+            pieceRobots++;
+            PlayerPrefs.SetInt("MainRAttach", 1);
+            PlayerPrefs.Save();
         }
         //tete
-        if (Input.GetKeyUp(KeyCode.R) && dropTete)
+        /*if (Input.GetKeyUp(KeyCode.R) && dropTete)
         {
             iconR.SetActive(false);
             pickUpRobot.tete.transform.localPosition = new Vector3(-87.78f, 16.01f, 17.88f);
@@ -428,7 +477,11 @@ public class BuildRobot : MonoBehaviour
             PlayerPrefs.SetString("Tete_Position", JsonUtility.ToJson(pickUpRobot.tete.transform.position));
             PlayerPrefs.SetString("Tete_Rotation", JsonUtility.ToJson(pickUpRobot.tete.transform.rotation));
             PlayerPrefs.Save();
-        }
+
+            pieceRobots++;
+            PlayerPrefs.SetInt("TeteAttach", 1);
+            PlayerPrefs.Save();
+        }*/
         //brasG
         if (Input.GetKeyUp(KeyCode.R) && dropBrasG)
         {
@@ -441,6 +494,10 @@ public class BuildRobot : MonoBehaviour
 
             PlayerPrefs.SetString("BrasG_Position", JsonUtility.ToJson(pickUpRobot.brasG.transform.position));
             PlayerPrefs.SetString("BrasG_Rotation", JsonUtility.ToJson(pickUpRobot.brasG.transform.rotation));
+            PlayerPrefs.Save();
+
+            pieceRobots++;
+            PlayerPrefs.SetInt("BrasGAttach", 1);
             PlayerPrefs.Save();
         }
         //mainG
@@ -456,9 +513,13 @@ public class BuildRobot : MonoBehaviour
             PlayerPrefs.SetString("MainG_Position", JsonUtility.ToJson(pickUpRobot.mainG.transform.position));
             PlayerPrefs.SetString("MainG_Rotation", JsonUtility.ToJson(pickUpRobot.mainG.transform.rotation));
             PlayerPrefs.Save();
+
+            pieceRobots++;
+            PlayerPrefs.SetInt("MainGAttach", 1);
+            PlayerPrefs.Save();
         }
         //jambeR
-        if (Input.GetKeyUp(KeyCode.R) && dropjambeR)
+        /*if (Input.GetKeyUp(KeyCode.R) && dropjambeR)
         {
             iconR.SetActive(false);
             pickUpRobot.jambeR.transform.localPosition = new Vector3(-88.34f, 6.79f, 19.27f);
@@ -470,7 +531,11 @@ public class BuildRobot : MonoBehaviour
             PlayerPrefs.SetString("JambeR_Position", JsonUtility.ToJson(pickUpRobot.jambeR.transform.position));
             PlayerPrefs.SetString("JambeR_Rotation", JsonUtility.ToJson(pickUpRobot.jambeR.transform.rotation));
             PlayerPrefs.Save();
-        }
+
+            pieceRobots++;
+            PlayerPrefs.SetInt("JambeRAttach", 1);
+            PlayerPrefs.Save();
+        }*/
         //piedR
         if (Input.GetKeyUp(KeyCode.R) && dropPiedR)
         {
@@ -484,9 +549,13 @@ public class BuildRobot : MonoBehaviour
             PlayerPrefs.SetString("PiedR_Position", JsonUtility.ToJson(pickUpRobot.piedR.transform.position));
             PlayerPrefs.SetString("PiedR_Rotation", JsonUtility.ToJson(pickUpRobot.piedR.transform.rotation));
             PlayerPrefs.Save();
+
+            pieceRobots++;
+            PlayerPrefs.SetInt("PiedRAttach", 1);
+            PlayerPrefs.Save();
         }
         //jambeL
-        if (Input.GetKeyUp(KeyCode.R) && dropjambeL)
+        /*if (Input.GetKeyUp(KeyCode.R) && dropjambeL)
         {
             iconR.SetActive(false);
             pickUpRobot.jambeL.transform.localPosition = new Vector3(-88.59f, 6.82f, 16.439f);
@@ -498,7 +567,11 @@ public class BuildRobot : MonoBehaviour
             PlayerPrefs.SetString("JambeL_Position", JsonUtility.ToJson(pickUpRobot.jambeL.transform.position));
             PlayerPrefs.SetString("JambeL_Rotation", JsonUtility.ToJson(pickUpRobot.jambeL.transform.rotation));
             PlayerPrefs.Save();
-        }
+
+            pieceRobots++;
+            PlayerPrefs.SetInt("JambeLAttach", 1);
+            PlayerPrefs.Save();
+        }*/
         //piedL
         if (Input.GetKeyUp(KeyCode.R) && dropPiedL)
         {
@@ -512,6 +585,28 @@ public class BuildRobot : MonoBehaviour
             PlayerPrefs.SetString("PiedL_Position", JsonUtility.ToJson(pickUpRobot.piedL.transform.localPosition));
             PlayerPrefs.SetString("PiedL_Rotation", JsonUtility.ToJson(pickUpRobot.piedL.transform.rotation));
             PlayerPrefs.Save();
+
+            pieceRobots++;
+            PlayerPrefs.SetInt("PiedLAttach", 1);
+            PlayerPrefs.Save();
+        }
+
+        lesPieceRobots();
+        //Debug.Log(pieceRobots);
+    }
+
+    void lesPieceRobots()
+    {
+        if (pieceRobots == 9)
+        {
+            //RobotIsComplet = true;
+            PlayerPrefs.SetInt("RobotIsComplet", 1);
+            PlayerPrefs.Save();
+            //Debug.Log("Robot completer");
+        }
+        else
+        {
+            //Debug.Log("Robot non completer");
         }
     }
 }
