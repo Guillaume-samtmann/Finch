@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/openWorld.unity
     guid: 8ad38e6ba61d97c45bb0cee92ab58df8
   - enabled: 1
+    path: Assets/Scenes/RepartRobot.unity
+    guid: 21e0a3d81166e514b9e85d9f09516619
+  - enabled: 1
     path: Assets/Scenes/Fin.unity
     guid: c27c20044efe43347a493e1c39ad7eb5
   m_configObjects: {}

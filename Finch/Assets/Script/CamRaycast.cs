@@ -12,6 +12,7 @@ public class CamRaycast : MonoBehaviour
     public Inventory inventory;
     public LearnBooks LearnBooks;
     public BuildRobot BuildRobot;
+    public GestionMateraiux gestionMateraiux;
 
     // Variables
     private GameObject previousHittedObject;
@@ -24,6 +25,7 @@ public class CamRaycast : MonoBehaviour
     public GameObject extractBook;
     public GameObject nameObj;
     public Text infoNameObj;
+    public GameObject jambeCasser;
     //
     public bool teteIsShow = true;
     public bool brasRisShow = true;
@@ -124,6 +126,24 @@ public class CamRaycast : MonoBehaviour
                         nameObj.SetActive(true);
                         infoNameObj.text = "Pièce : Jambe Droit";
                     }
+                }
+                if (hittedObject.name == "jambeCasser")
+                {
+                    if (gestionMateraiux.nbrMateriauxID < 10)
+                    {
+                        HighlightObject(hittedObject, true);
+                        iconeE.SetActive(false);
+                        nameObj.SetActive(true);
+                        infoNameObj.text = "Pièce : Jambe Droit cassé récupérer 10métaux pour la réparer";
+                    }
+                    else
+                    {
+                        HighlightObject(hittedObject, true);
+                        iconeE.SetActive(true);
+                        nameObj.SetActive(true);
+                        infoNameObj.text = "Pièce : Jambe Droit cassé press E pour la réparer";
+                    }
+
                 }
                 if (hittedObject.name == "pieds.R") pickUpRobot.piedRPickUp = true;
                 if (hittedObject.name == "pieds.R")
@@ -369,8 +389,20 @@ public class CamRaycast : MonoBehaviour
                         }
                     }
                     break;
+                case "jambeCasser":
+                    if (gestionMateraiux.nbrMateriauxID >= 10)
+                    {
+                        pickUpRobot.jambeR.SetActive(true);
+                        jambeCasser.SetActive(false);
+                        gestionMateraiux.nbrMateriauxID = gestionMateraiux.nbrMateriauxID - 10;
+                        PlayerPrefs.SetInt("jambeRreparer", 1);
+                        PlayerPrefs.Save();
+
+                        gestionMateraiux.nbrMateriaux.text = gestionMateraiux.nbrMateriauxID.ToString();
+                    }
+                    break;
                 case "jambe.R":
-                    if (PlayerPrefs.GetInt("JambeRIsConfig", 0) == 1 && pickUpRobot.jambeRPickUp && pickUpRobot.jambeRAttach == false)
+                    if (PlayerPrefs.GetInt("JambeRIsConfig", 0) == 1 && pickUpRobot.jambeRPickUp && pickUpRobot.jambeRAttach == false && PlayerPrefs.HasKey("jambeRreparer"))
                     {
                         if (PlayerPrefs.HasKey("isAttachToRobotsJambeR"))
                         {

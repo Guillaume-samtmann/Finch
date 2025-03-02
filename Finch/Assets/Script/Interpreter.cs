@@ -881,6 +881,32 @@ public class Interpreter : MonoBehaviour
                     return response;
                 }
             }
+            if (args[0] == "exit")
+            {
+                if (PlayerPrefs.HasKey("RobotIsComplet") && PlayerPrefs.HasKey("LivreHistoire") && PlayerPrefs.HasKey("LivreSciences") && PlayerPrefs.HasKey("LivreChien"))
+                {
+                    response.Add("Félicitations F.I.N.C.H est maintenant compléter a 100%.");
+                    response.Add("Rentre la commande suivante : gcc finch.c -o finch");
+                    PlayerPrefs.SetInt("RobotFini", 1);
+                    return response;
+                }
+            }
+            if (args[0] == "exit")
+            {
+                if (isConnecter)
+                {
+                    response.Add("Vous êtes déconnectez press \"E\" pour sortir de l'ordinateur");
+                    isAdmin = false;
+                    isConnecter = false;
+                    return response;
+                }
+                else
+                {
+                    response.Add("Vous êtes déja déonnectez");
+                    return response;
+                }
+
+            }
             else
             {
                 response.Add("Command not recognized.");
@@ -933,6 +959,32 @@ public class Interpreter : MonoBehaviour
                     return response;
                 }
             }
+            if (args[0] == "exit")
+            {
+                if (PlayerPrefs.HasKey("RobotIsComplet") && PlayerPrefs.HasKey("LivreHistoire") && PlayerPrefs.HasKey("LivreSciences") && PlayerPrefs.HasKey("LivreChien"))
+                {
+                    response.Add("Félicitations F.I.N.C.H est maintenant compléter a 100%.");
+                    response.Add("Rentre la commande suivante : gcc finch.c -o finch");
+                    PlayerPrefs.SetInt("RobotFini", 1);
+                    return response;
+                }
+            }
+            if (args[0] == "exit")
+            {
+                if (isConnecter)
+                {
+                    response.Add("Vous êtes déconnectez press \"E\" pour sortir de l'ordinateur");
+                    isAdmin = false;
+                    isConnecter = false;
+                    return response;
+                }
+                else
+                {
+                    response.Add("Vous êtes déja déonnectez");
+                    return response;
+                }
+
+            }
             else
             {
                 response.Add("Command not recognized.");
@@ -984,6 +1036,32 @@ public class Interpreter : MonoBehaviour
                     response.Add("Vous n'avez pas les droits nécessaire");
                     return response;
                 }
+            }
+            if (args[0] == "exit")
+            {
+                if (PlayerPrefs.HasKey("RobotIsComplet") && PlayerPrefs.HasKey("LivreHistoire") && PlayerPrefs.HasKey("LivreSciences") && PlayerPrefs.HasKey("LivreChien"))
+                {
+                    response.Add("Félicitations F.I.N.C.H est maintenant compléter a 100%.");
+                    response.Add("Rentre la commande suivante : gcc finch.c -o finch");
+                    PlayerPrefs.SetInt("RobotFini", 1);
+                    return response;
+                }
+            }
+            if (args[0] == "exit")
+            {
+                if (isConnecter)
+                {
+                    response.Add("Vous êtes déconnectez press \"E\" pour sortir de l'ordinateur");
+                    isAdmin = false;
+                    isConnecter = false;
+                    return response;
+                }
+                else
+                {
+                    response.Add("Vous êtes déja déonnectez");
+                    return response;
+                }
+
             }
             else
             {
@@ -1059,7 +1137,7 @@ public class Interpreter : MonoBehaviour
     IEnumerator FinalGame()
     {
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 }
 
