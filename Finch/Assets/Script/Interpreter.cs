@@ -26,6 +26,21 @@ public class Interpreter : MonoBehaviour
     bool mainGisConf = false;
     bool jambeGisConf = false;
     bool piedGisConf = false;
+
+    //Livre
+    bool mkdirLivreHistoire = false;
+    bool cdLivreHistoire = false;
+    public GameObject livreHisoire;
+
+    //Sciences
+    bool mkdirLivreSciences = false;
+    bool cdLivreSciences = false;
+    public GameObject livreSciences;
+
+    //Chien
+    bool mkdirLivreChien = false;
+    bool cdLivreChien = false;
+    public GameObject livreChien;
     public List<string> Interpret(string userInput)
     {
         response.Clear();
@@ -55,23 +70,6 @@ public class Interpreter : MonoBehaviour
                 isConnecter = true;
                 return response;
             }
-        }
-        //exit
-        if (args[0] == "exit")
-        {
-            if(isConnecter)
-            {
-                response.Add("Vous êtes déconnectez press \"E\" pour sortir de l'ordinateur");
-                isAdmin = false;
-                isConnecter = false;
-                return response;
-            }
-            else
-            {
-                response.Add("Vous êtes déja déonnectez");
-                return response;
-            }
-            
         }
         //Install Tete
         if(string.Join(" ", args) == "sudo apt install tete")
@@ -836,11 +834,218 @@ public class Interpreter : MonoBehaviour
                 return response;
             }
         }
+        //Gestion des livres
+        //Livre d'histoire
+        if (PlayerPrefs.HasKey("LivreHistoire_Position"))
+        {
+            if (string.Join(" ", args) == "mkdir livre histoire")
+            {
+                response.Add("Dossier Livre d'histoire crée");
+                mkdirLivreHistoire = true;
+                return response;
+            }
+            if (string.Join(" ", args) == "cd livre histoire")
+            {
+                if(mkdirLivreHistoire == true)
+                {
+                    livreHisoire.SetActive(true);
+                    cdLivreHistoire = true;
+                    response.Add("Vous êtes maintenant dans el dossier livre histoire");
+                    return response;
+                }
+                else
+                {
+                    response.Add("Dossier inconnu.");
+                    return response;
+                }
+            }
+            if (string.Join(" ", args) == "tar -cvf livre histoire.tar")
+            {
+                if (isAdmin)
+                {
+                    if(cdLivreHistoire)
+                    {
+                        response.Add("Livre d'histoire extrait");
+                        PlayerPrefs.SetInt("LivreHistoire", 1);
+                        return response;
+                    }
+                    else
+                    {
+                        response.Add("Impossible d'extraire le livre");
+                        return response;
+                    }
+                }
+                else
+                {
+                    response.Add("Vous n'avez pas les droits nécessaire");
+                    return response;
+                }
+            }
+            else
+            {
+                response.Add("Command not recognized.");
+                return response;
+            }
+        }
+        //Livre de sciences
+        if (PlayerPrefs.HasKey("LivreSciences_Position"))
+        {
+            if (string.Join(" ", args) == "mkdir livre sciences")
+            {
+                response.Add("Dossier Livre sciences crée");
+                mkdirLivreSciences = true;
+                return response;
+            }
+            if (string.Join(" ", args) == "cd livre sciences")
+            {
+                if (mkdirLivreSciences == true)
+                {
+                    livreSciences.SetActive(true);
+                    cdLivreSciences = true;
+                    response.Add("Vous êtes maintenant dans el dossier livre Sciences");
+                    return response;
+                }
+                else
+                {
+                    response.Add("Dossier inconnu.");
+                    return response;
+                }
+            }
+            if (string.Join(" ", args) == "tar -cvf livre sciences.tar")
+            {
+                if (isAdmin)
+                {
+                    if (cdLivreSciences)
+                    {
+                        response.Add("Livre Sciences extrait");
+                        PlayerPrefs.SetInt("LivreSciences", 1);
+                        return response;
+                    }
+                    else
+                    {
+                        response.Add("Impossible d'extraire le livre");
+                        return response;
+                    }
+                }
+                else
+                {
+                    response.Add("Vous n'avez pas les droits nécessaire");
+                    return response;
+                }
+            }
+            else
+            {
+                response.Add("Command not recognized.");
+                return response;
+            }
+        }
+        //Livre de chien
+        if (PlayerPrefs.HasKey("LivreChien_Position"))
+        {
+            if (string.Join(" ", args) == "mkdir livre chien")
+            {
+                response.Add("Dossier Livre chien crée");
+                mkdirLivreChien = true;
+                return response;
+            }
+            if (string.Join(" ", args) == "cd livre chien")
+            {
+                if (mkdirLivreChien == true)
+                {
+                    livreChien.SetActive(true);
+                    cdLivreChien = true;
+                    response.Add("Vous êtes maintenant dans el dossier livre Chien");
+                    return response;
+                }
+                else
+                {
+                    response.Add("Dossier inconnu.");
+                    return response;
+                }
+            }
+            if (string.Join(" ", args) == "tar -cvf livre chien.tar")
+            {
+                if (isAdmin)
+                {
+                    if (cdLivreChien)
+                    {
+                        response.Add("Livre Chien extrait");
+                        PlayerPrefs.SetInt("LivreChien", 1);
+                        return response;
+                    }
+                    else
+                    {
+                        response.Add("Impossible d'extraire le livre");
+                        return response;
+                    }
+                }
+                else
+                {
+                    response.Add("Vous n'avez pas les droits nécessaire");
+                    return response;
+                }
+            }
+            else
+            {
+                response.Add("Command not recognized.");
+                return response;
+            }
+        }
+        //robot complete
+        if (args[0] == "exit")
+        {
+            if (PlayerPrefs.HasKey("RobotIsComplet") && PlayerPrefs.HasKey("LivreHistoire") && PlayerPrefs.HasKey("LivreSciences") && PlayerPrefs.HasKey("LivreChien"))
+            {
+                response.Add("Félicitations F.I.N.C.H est maintenant compléter a 100%.");
+                response.Add("Rentre la commande suivante : gcc finch.c -o finch");
+                PlayerPrefs.SetInt("RobotFini", 1);
+                return response;
+            }
+        }
+        if (PlayerPrefs.HasKey("RobotFini"))
+        {
+            if (string.Join(" ", args) == "gcc finch.c -o finch")
+            {
+                if (isAdmin)
+                {
+                    response.Add("F.I.N.C.H términé ... systéme en marche ... F.I.N.C.H activé");
+                    StartCoroutine(FinalGame());
+                    return response;
+                }
+                else
+                {
+                    response.Add("Vous n'avez pas les droits nécessaire");
+                    return response;
+                }
+            }
+        }
+        //exit
+        if (args[0] == "exit")
+        {
+            if (isConnecter)
+            {
+                response.Add("Vous êtes déconnectez press \"E\" pour sortir de l'ordinateur");
+                isAdmin = false;
+                isConnecter = false;
+                return response;
+            }
+            else
+            {
+                response.Add("Vous êtes déja déonnectez");
+                return response;
+            }
+
+        }
         else
         {
             response.Add("Command not recognized.");
             return response;
         }
+    }
+
+    private void Start()
+    {
+        //Debug.Log(PlayerPrefs.HasKey("LivreSciences_Position"));
     }
 
     private void Update()
@@ -849,6 +1054,12 @@ public class Interpreter : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+    }
+
+    IEnumerator FinalGame()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(3);
     }
 }
 

@@ -5,20 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
-  - triggeurBrasR
-  - triggeurMainR
-  - triggeurTete
-  - triggeurBrasG
-  - triggeurMainG
-  - triggeurJambeR
-  - triggeurPiedR
-  - triggeurJambeL
-  - triggeurPiedL
   - openOrdinateur
   - pieceRobots
   - books
   - extractBook
   - depotPieceRobot
+  - GoToCave
+  - GoToOpenWorld
+  - InspecterCar
+  - InspecterCar1
   layers:
   - Default
   - TransparentFX

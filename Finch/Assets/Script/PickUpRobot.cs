@@ -36,7 +36,6 @@ public class PickUpRobot : MonoBehaviour
     public GameObject mainG;
     public bool brasGAttach = false;
     //jambeR
-    public bool jambeRtriggerEnabled = true;
     public bool jambeRIsPickup = false;
     public bool jambeRPickUp = false;
     public GameObject jambeR;
