@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class openOdinateurLoadTerminal : MonoBehaviour
 {
     public PickUpRobot pickUpRobot;
+    public CamRaycast camRaycast;
     bool canOpenDesktop = false;
     public GameObject burreau;
     public GameObject Playeurs;
@@ -16,6 +17,9 @@ public class openOdinateurLoadTerminal : MonoBehaviour
             canOpenDesktop = true;
             burreau = other.gameObject;
             pickUpRobot.iconE.SetActive(true);
+            camRaycast.nameObj.SetActive(true);
+            camRaycast.infoNameObj.text = "Ordinateur";
+            camRaycast.infoObj.text = " ";
         }
     }
 

@@ -26,12 +26,6 @@ public class RepartCostume : MonoBehaviour
             CanvaCostume.gameObject.SetActive(true);
             trait.gameObject.SetActive(false);
         }
-        else
-        {
-            costume.gameObject.SetActive(true);
-            CanvaCostume.gameObject.SetActive(false);
-            trait.gameObject.SetActive(true);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,7 +54,6 @@ public class RepartCostume : MonoBehaviour
 
         if(other.gameObject.tag == "retireCostume")
         {
-            isRepart = false;
             retirerCostume = true;
             pickUpRobot.iconE.SetActive(true);
         }

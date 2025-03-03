@@ -54,18 +54,19 @@ public class GestionMateraiux : MonoBehaviour
     {
         if (other.gameObject.tag == "GoToOpenWorld")
         {
-            if (PlayerPrefs.HasKey("canTakeCostume"))
+            if (PlayerPrefs.HasKey("CostumeIsTaking"))
             {
                 canGoOutside = true;
                 pickUpRobot.iconE.SetActive(true);
-            }
-            else
+                camRaycast.nameObj.SetActive(true);
+                camRaycast.infoNameObj.text = "Porte";
+            }else
             {
                 canGoOutside = false;
                 camRaycast.nameObj.SetActive(true);
-                camRaycast.infoNameObj.text = "Impossible de sortir sans la combinaison";
+                camRaycast.infoNameObj.text = "Porte";
+                camRaycast.infoObj.text = "Impossible de sortir sans la combinaison";
             }
-            
         }
     }
 

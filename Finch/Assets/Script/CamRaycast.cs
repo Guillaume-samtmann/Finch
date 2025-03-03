@@ -258,6 +258,7 @@ public class CamRaycast : MonoBehaviour
                     LearnBooks.HistoryBook = true;
                     nameObj.SetActive(true);
                     infoNameObj.text = "livre histoire";
+                    infoObj.text = " ";
                     Debug.Log("livre histoire");
                 }
                 else if (hittedObject.name == "bookSciences")
@@ -266,6 +267,7 @@ public class CamRaycast : MonoBehaviour
                     LearnBooks.SciencesBook = true;
                     nameObj.SetActive(true);
                     infoNameObj.text = "livre sciences";
+                    infoObj.text = " ";
                 }
                 else if (hittedObject.name == "bookChien")
                 {
@@ -273,6 +275,7 @@ public class CamRaycast : MonoBehaviour
                     LearnBooks.ChienBook = true;
                     nameObj.SetActive(true);
                     infoNameObj.text = "livre chien";
+                    infoObj.text = " ";
                 }
                 else
                 {
@@ -559,11 +562,11 @@ public class CamRaycast : MonoBehaviour
         }
         
         //déposer le livre
-        if(Input.GetKeyDown(KeyCode.R) && hittedObject !=null && hittedObject.CompareTag("extractBook"))
+        if(Input.GetKeyDown(KeyCode.E) && hittedObject !=null && hittedObject.CompareTag("extractBook"))
         {
             if (PlayerPrefs.HasKey("BookHistoryPickUp"))
             {
-                iconeR.SetActive(false);
+                iconeE.SetActive(false);
                 LearnBooks.bookHistory.transform.localPosition = new Vector3(3.34f, 0.84f, 5.14f);
                 LearnBooks.bookHistory.transform.rotation = Quaternion.Euler(0, -228.97f, 0);
                 LearnBooks.bookHistory.SetActive(true);
@@ -576,7 +579,7 @@ public class CamRaycast : MonoBehaviour
 
             if (PlayerPrefs.HasKey("BookSciencesPickUp"))
             {
-                iconeR.SetActive(false);
+                iconeE.SetActive(false);
                 LearnBooks.bookSciences.transform.localPosition = new Vector3(3.34f, 0.84f, 5.14f);
                 LearnBooks.bookSciences.transform.rotation = Quaternion.Euler(0, -228.97f, 0);
                 LearnBooks.bookSciences.SetActive(true);
@@ -589,7 +592,7 @@ public class CamRaycast : MonoBehaviour
 
             if (PlayerPrefs.HasKey("BookChienPickUp"))
             {
-                iconeR.SetActive(false);
+                iconeE.SetActive(false);
                 LearnBooks.bookChien.transform.localPosition = new Vector3(3.34f, 0.84f, 5.14f);
                 LearnBooks.bookChien.transform.rotation = Quaternion.Euler(0, -228.97f, 0);
                 LearnBooks.bookChien.SetActive(true);
@@ -602,7 +605,7 @@ public class CamRaycast : MonoBehaviour
         }
 
         //déposer une piéce robot
-        if (Input.GetKeyDown(KeyCode.R) && hittedObject != null && hittedObject.CompareTag("depotPieceRobot"))
+        if (Input.GetKeyDown(KeyCode.E) && hittedObject != null && hittedObject.CompareTag("depotPieceRobot"))
         {
             switch (hittedObject.name)
             {
@@ -610,7 +613,7 @@ public class CamRaycast : MonoBehaviour
                     //Jambe Gauche
                     if (pickUpRobot.jambeLIsPickup == true)
                     {
-                        iconeR.SetActive(false);
+                        iconeE.SetActive(false);
                         pickUpRobot.jambeL.transform.localPosition = new Vector3(-88.59f, 6.82f, 16.439f);
                         pickUpRobot.jambeL.transform.rotation = Quaternion.Euler(-90f, -180, 90);
                         pickUpRobot.jambeL.SetActive(true);
@@ -630,7 +633,7 @@ public class CamRaycast : MonoBehaviour
                     //Jambe Droite
                     if (pickUpRobot.jambeRIsPickup == true)
                     {
-                        iconeR.SetActive(false);
+                        iconeE.SetActive(false);
                         pickUpRobot.jambeR.transform.localPosition = new Vector3(-88.34f, 6.79f, 19.27f);
                         pickUpRobot.jambeR.transform.rotation = Quaternion.Euler(-90f, 0, 96.14f);
                         pickUpRobot.jambeR.SetActive(true);
@@ -651,7 +654,7 @@ public class CamRaycast : MonoBehaviour
                     //tete
                     if (pickUpRobot.teteIsPickup == true)
                     {
-                        iconeR.SetActive(false);
+                        iconeE.SetActive(false);
                         pickUpRobot.tete.transform.localPosition = new Vector3(-87.78f, 16.01f, 17.88f);
                         pickUpRobot.tete.transform.rotation = Quaternion.Euler(-83.18f, 90, 0);
                         pickUpRobot.tete.SetActive(true);
@@ -673,7 +676,7 @@ public class CamRaycast : MonoBehaviour
                     //brasR
                     if (pickUpRobot.brasRIsPickup == true)
                     {
-                        iconeR.SetActive(false);
+                        iconeE.SetActive(false);
                         pickUpRobot.brasR.transform.localPosition = new Vector3(-89.41f, 15.35f, 19.59f);
                         pickUpRobot.brasR.transform.rotation = Quaternion.Euler(-90f, 0, 90);
                         pickUpRobot.brasR.SetActive(true);
@@ -694,7 +697,7 @@ public class CamRaycast : MonoBehaviour
                     //brasG
                     if (pickUpRobot.brasGIsPickup == true)
                     {
-                        iconeR.SetActive(false);
+                        iconeE.SetActive(false);
                         pickUpRobot.brasG.transform.localPosition = new Vector3(-89.55f, 15.32f, 16.05f);
                         pickUpRobot.brasG.transform.rotation = Quaternion.Euler(-90f, 0, 270f);
                         pickUpRobot.brasG.SetActive(true);
@@ -716,7 +719,7 @@ public class CamRaycast : MonoBehaviour
                     //mainG
                     if (pickUpRobot.mainGIsPickup == true)
                     {
-                        iconeR.SetActive(false);
+                        iconeE.SetActive(false);
                         pickUpRobot.mainG.transform.localPosition = new Vector3(-88.96f, 7.56f, 14.25f);
                         pickUpRobot.mainG.transform.rotation = Quaternion.Euler(-60.60f, 260.96f, 12.71f);
                         pickUpRobot.mainG.SetActive(true);
@@ -737,7 +740,7 @@ public class CamRaycast : MonoBehaviour
                     //piedG
                     if (pickUpRobot.piedLIsPickup == true)
                     {
-                        iconeR.SetActive(false);
+                        iconeE.SetActive(false);
                         pickUpRobot.piedL.transform.localPosition = new Vector3(-88.09f, 2.61f, 16.373f);
                         pickUpRobot.piedL.transform.rotation = Quaternion.Euler(-79.85f, 89.88f, 0.11f);
                         pickUpRobot.piedL.SetActive(true);
@@ -758,7 +761,7 @@ public class CamRaycast : MonoBehaviour
                     //mainR
                     if (pickUpRobot.mainRIsPickup == true)
                     {
-                        iconeR.SetActive(false);
+                        iconeE.SetActive(false);
                         pickUpRobot.mainR.transform.localPosition = new Vector3(-88.01f, 7.81f, 21.74f);
                         pickUpRobot.mainR.transform.rotation = Quaternion.Euler(-90.42f, 90, 0);
                         pickUpRobot.mainR.SetActive(true);
@@ -779,7 +782,7 @@ public class CamRaycast : MonoBehaviour
                     //piedR
                     if(pickUpRobot.piedRIsPickup==true)
                     {
-                        iconeR.SetActive(false);
+                        iconeE.SetActive(false);
                         pickUpRobot.piedR.transform.localPosition = new Vector3(-88.06f, 2.42f, 19.22f);
                         pickUpRobot.piedR.transform.rotation = Quaternion.Euler(-85.53f, 90.01f, 4.30f);
                         pickUpRobot.piedR.SetActive(true);
