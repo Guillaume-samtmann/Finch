@@ -45,5 +45,10 @@ public class VerifCss : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
+
+    public void retour()
+    {
+        SceneManager.LoadScene(1);
+    }
 }
 

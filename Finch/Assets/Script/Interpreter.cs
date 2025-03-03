@@ -50,8 +50,13 @@ public class Interpreter : MonoBehaviour
         if (args[0] == "help")
         {
             //Return some info
-            response.Add("If you want to use the terminal, type \"boop\" ");
-            response.Add("This is the second line that we are returning");
+            response.Add("sudo su : permet de se connecter en tant que super utilisateur");
+            response.Add("sudo apt install <nom> : remplacez <nom> par le nom du package, cela lancera l'installation du package");
+            response.Add("cat <nom>_config.txt : remplacez <nom> par le nom du package, cela créera la configuration du package");
+            response.Add("mkdir <nom> : permet de créer un dossier (seulement disponible pour les livres)");
+            response.Add("cd <nom> : permet de se rendre dans un dossier (seulement disponible pour les livres)");
+            response.Add("tar -cvf <nom>.tar : permet d'extraire le contenu du livre (seulement disponible pour les livres)");
+            response.Add("exit : permet de quitter l'interface");
 
             return response;
         }
@@ -60,12 +65,12 @@ public class Interpreter : MonoBehaviour
         {
             if(isAdmin)
             {
-                response.Add("Vous etes déja connectez");
+                response.Add("Vous êtes déjà connectés");
                 return response;
             }
             else
             {
-                response.Add("Vous etes connectez à l'interface de développement");
+                response.Add("Vous êtes connectés à l'interface de développement");
                 isAdmin = true;
                 isConnecter = true;
                 return response;
@@ -78,20 +83,20 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("Tete_Position") && PlayerPrefs.HasKey("Tete_Rotation"))
                 {
-                    response.Add("Package déja installé");
+                    response.Add("Package déjà installé");
                     return response;
                 }
                 else
                 {
                     if (!teteIsinstall)
                     {
-                        response.Add("Le package \"tete\" est bien installé vous pouvez le configurez");
+                        response.Add("Le package \"tête\" est bien installé, vous pouvez le configurer");
                         teteIsinstall = true;
                         return response;
                     }
                     else
                     {
-                        response.Add("Package déja installé");
+                        response.Add("Package déjà installé");
                         return response;
                     }
                 }
@@ -109,7 +114,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("Tete_Position") && PlayerPrefs.HasKey("Tete_Rotation"))
                 {
-                    response.Add("Configuration déja en place");
+                    response.Add("Configuration déjà en place");
                     return response;
                 }
                 else
@@ -118,7 +123,7 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!teteIsConf)
                         {
-                            response.Add("Fichiez crée vous pouvez ajoutez la tête au robot");
+                            response.Add("Fichier créé, vous pouvez ajouter la tête au robot");
                             PlayerPrefs.SetInt("TeteIsConfig", 1);
                             PlayerPrefs.Save();
                             teteIsConf = true;
@@ -126,20 +131,20 @@ public class Interpreter : MonoBehaviour
                         }
                         else
                         {
-                            response.Add("Configuration déja en place");
+                            response.Add("Configuration déjà en place");
                             return response;
                         }
                     }
                     else
                     {
-                        response.Add("Aucune référence à tête dans vos package la config est impossible");
+                        response.Add("Aucune référence à tête dans vos packages, la configuration est impossible");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
                 return response;
             }
         }
@@ -150,27 +155,27 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("BrasR_Position") && PlayerPrefs.HasKey("BrasR_Rotation"))
                 {
-                    response.Add("Package déja installé");
+                    response.Add("Package déjà installé");
                     return response;
                 }
                 else
                 {
                     if (!brasRisinstall)
                     {
-                        response.Add("Le package \"brasR\" est bien installé vous pouvez le configurez");
+                        response.Add("Le package \"brasR\" est bien installé, vous pouvez le configurer");
                         brasRisinstall = true;
                         return response;
                     }
                     else
                     {
-                        response.Add("Package déja installé");
+                        response.Add("Package déjà installé");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
                 return response;
             }
 
@@ -182,7 +187,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("BrasR_Position") && PlayerPrefs.HasKey("BrasR_Rotation"))
                 {
-                    response.Add("Configuration déja en place");
+                    response.Add("Configuration déjà en place");
                     return response;
                 }
                 else
@@ -191,7 +196,7 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!brasRisConf)
                         {
-                            response.Add("Fichiez crée vous pouvez ajoutez le bras (réf : 982374) au robot");
+                            response.Add("Fichier créé, vous pouvez ajouter le bras droit au robot");
                             brasRisConf = true;
                             PlayerPrefs.SetInt("BrasRIsConfig", 1);
                             PlayerPrefs.Save();
@@ -199,20 +204,20 @@ public class Interpreter : MonoBehaviour
                         }
                         else
                         {
-                            response.Add("Configuration déja en place");
+                            response.Add("Configuration déjà en place");
                             return response;
                         }
                     }
                     else
                     {
-                        response.Add("Aucune référence au brasR dans vos package la config est impossible");
+                        response.Add("Aucune référence au brasR dans vos packages, la configuration est impossible");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
                 return response;
             }
         }
@@ -223,7 +228,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("MainR_Position") && PlayerPrefs.HasKey("MainR_Rotation"))
                 {
-                    response.Add("Package déja installé");
+                    response.Add("Package déjà installé");
                     return response;
                 }
                 else
@@ -232,7 +237,7 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!mainRisinstall)
                         {
-                            response.Add("Le package \"mainR\" est bien installé vous pouvez le configurez");
+                            response.Add("Le package \"mainR\" est bien installé, vous pouvez le configurer");
                             mainRisinstall = true;
                             return response;
                         }
@@ -248,20 +253,20 @@ public class Interpreter : MonoBehaviour
                         {
                             if (!mainRisinstall)
                             {
-                                response.Add("Le package \"mainR\" est bien installé vous pouvez le configurez");
+                                response.Add("Le package \"mainR\" est bien installé, vous pouvez le configurer");
                                 mainRisinstall = true;
                                 return response;
                             }
                             else
                             {
-                                response.Add("Package déja installé");
+                                response.Add("Package déjà installé");
                                 return response;
                             }
 
                         }
                         else
                         {
-                            response.Add("Erreur il manque des dépendances");
+                            response.Add("Erreur, il manque des dépendances");
                             return response;
                         }
                     }
@@ -269,7 +274,7 @@ public class Interpreter : MonoBehaviour
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
                 return response;
             }
         }
@@ -280,7 +285,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("MainR_Position") && PlayerPrefs.HasKey("MainR_Rotation"))
                 {
-                    response.Add("Configuration déja en place");
+                    response.Add("Configuration déjà en place");
                     return response;
                 }
                 else
@@ -289,7 +294,7 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!mainRisConf)
                         {
-                            response.Add("Fichiez crée vous pouvez ajoutez la main (réf : 981985) au robot");
+                            response.Add("Fichier créé, vous pouvez ajouter la main droite au robot");
                             mainRisConf = true;
                             PlayerPrefs.SetInt("MainRIsConfig", 1);
                             PlayerPrefs.Save();
@@ -297,13 +302,13 @@ public class Interpreter : MonoBehaviour
                         }
                         else
                         {
-                            response.Add("Configuration déja en place");
+                            response.Add("Configuration déjà en place");
                             return response;
                         }
                     }
                     else
                     {
-                        response.Add("Aucune référence à mainR dans vos package la config est impossible");
+                        response.Add("Aucune référence à mainR dans vos packages, la configuration est impossible");
                         return response;
                     }
                 }   
@@ -321,7 +326,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("JambeR_Position") && PlayerPrefs.HasKey("JambeR_Rotation"))
                 {
-                    response.Add("Package déja installé");
+                    response.Add("Package déjà installé");
                     return response;
                 }
                 else
@@ -334,14 +339,14 @@ public class Interpreter : MonoBehaviour
                     }
                     else
                     {
-                        response.Add("Package déja installé");
+                        response.Add("Package déjà installé");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
                 return response;
             }
         }
@@ -352,7 +357,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("JambeR_Position") && PlayerPrefs.HasKey("JambeR_Rotation"))
                 {
-                    response.Add("Configuration déja en place");
+                    response.Add("Configuration déjà en place");
                     return response;
                 }
                 else
@@ -361,7 +366,7 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!jambeRisConf)
                         {
-                            response.Add("Fichiez crée vous pouvez ajoutez la jambe (réf : 984876) au robot");
+                            response.Add("Fichier créé, vous pouvez ajouter la jambe droite au robot");
                             jambeRisConf = true;
                             PlayerPrefs.SetInt("JambeRIsConfig", 1);
                             PlayerPrefs.Save();
@@ -369,20 +374,20 @@ public class Interpreter : MonoBehaviour
                         }
                         else
                         {
-                            response.Add("Configuration déja en place");
+                            response.Add("Configuration déjà en place");
                             return response;
                         }
                     }
                     else
                     {
-                        response.Add("Aucune référence à jambeR dans vos package la config est impossible");
+                        response.Add("Aucune référence à jambeR dans vos packages, la configuration est impossible");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
 
                 return response;
             }
@@ -394,7 +399,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("PiedR_Position") && PlayerPrefs.HasKey("PiedR_Rotation"))
                 {
-                    response.Add("Package déja installé");
+                    response.Add("Package déjà installé");
                     return response;
                 }
                 else
@@ -403,13 +408,13 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!piedRisinstall)
                         {
-                            response.Add("Le package \"piedR\" est bien installé vous pouvez le configurez");
+                            response.Add("Le package \"piedR\" est bien installé, vous pouvez le configurer");
                             piedRisinstall = true;
                             return response;
                         }
                         else
                         {
-                            response.Add("Package déja installé");
+                            response.Add("Package déjà installé");
                             return response;
                         }
                     }
@@ -419,19 +424,19 @@ public class Interpreter : MonoBehaviour
                         {
                             if (!piedRisinstall)
                             {
-                                response.Add("Le package \"piedR\" est bien installé vous pouvez le configurez");
+                                response.Add("Le package \"piedR\" est bien installé, vous pouvez le configurer");
                                 piedRisinstall = true;
                                 return response;
                             }
                             else
                             {
-                                response.Add("Package déja installé");
+                                response.Add("Package déjà installé");
                                 return response;
                             }
                         }
                         else
                         {
-                            response.Add("Erreur il manque des dépendances");
+                            response.Add("Erreur, il manque des dépendances");
                             return response;
                         }
                     }
@@ -439,7 +444,7 @@ public class Interpreter : MonoBehaviour
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
 
                 return response;
             }
@@ -451,7 +456,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("PiedR_Position") && PlayerPrefs.HasKey("PiedR_Rotation"))
                 {
-                    response.Add("Configuration déja en place");
+                    response.Add("Configuration déjà en place");
                     return response;
                 }
                 else
@@ -460,7 +465,7 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!piedRisConf)
                         {
-                            response.Add("Fichiez crée vous pouvez ajoutez le pied (réf : 9805542) au robot");
+                            response.Add("Fichier créé, vous pouvez ajouter le pied droit au robot");
                             piedRisConf = true;
                             PlayerPrefs.SetInt("PiedsRIsConfig", 1);
                             PlayerPrefs.Save();
@@ -468,20 +473,20 @@ public class Interpreter : MonoBehaviour
                         }
                         else
                         {
-                            response.Add("Configuration déja en place");
+                            response.Add("Configuration déjà en place");
                             return response;
                         }
                     }
                     else
                     {
-                        response.Add("Aucune référence à piedR dans vos package la config est impossible");
+                        response.Add("Aucune référence à piedR dans vos packages, la configuration est impossible");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
 
                 return response;
             }
@@ -493,27 +498,27 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("BrasG_Position") && PlayerPrefs.HasKey("BrasG_Rotation"))
                 {
-                    response.Add("Package déja installé");
+                    response.Add("Package déjà installé");
                     return response;
                 }
                 else
                 {
                     if (!brasGisinstall)
                     {
-                        response.Add("Le package \"brasG\" est bien installé vous pouvez le configurez");
+                        response.Add("Le package \"brasG\" est bien installé, vous pouvez le configurer");
                         brasGisinstall = true;
                         return response;
                     }
                     else
                     {
-                        response.Add("Package déja installé");
+                        response.Add("Package déjà installé");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
 
                 return response;
             }
@@ -526,7 +531,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("BrasG_Position") && PlayerPrefs.HasKey("BrasG_Rotation"))
                 {
-                    response.Add("Configuration déja en place");
+                    response.Add("Configuration déjà en place");
                     return response;
                 }
                 else
@@ -535,7 +540,7 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!brasGisConf)
                         {
-                            response.Add("Fichiez crée vous pouvez ajoutez le bras (réf : 992374) au robot");
+                            response.Add("Fichier créé, vous pouvez ajouter le bras gauche au robot");
                             brasGisConf = true;
                             PlayerPrefs.SetInt("BrasGIsConfig", 1);
                             PlayerPrefs.Save();
@@ -543,13 +548,13 @@ public class Interpreter : MonoBehaviour
                         }
                         else
                         {
-                            response.Add("Configuration déja en place");
+                            response.Add("Configuration déjà en place");
                             return response;
                         }
                     }
                     else
                     {
-                        response.Add("Aucune référence à brasG dans vos package la config est impossible");
+                        response.Add("Aucune référence au brasG dans vos packages, la configuration est impossible");
                         return response;
                     }
                 }
@@ -568,7 +573,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("MainG_Position") && PlayerPrefs.HasKey("MainG_Rotation"))
                 {
-                    response.Add("Package déja installé");
+                    response.Add("Package déjà installé");
                     return response;
                 }
                 else
@@ -577,13 +582,13 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!mainGisinstall)
                         {
-                            response.Add("Le package \"mainG\" est bien installé vous pouvez le configurez");
+                            response.Add("Le package \"mainG\" est bien installé, vous pouvez le configurer");
                             mainGisinstall = true;
                             return response;
                         }
                         else
                         {
-                            response.Add("Package déja installé");
+                            response.Add("Package déjà installé");
                             return response;
                         }
                     }
@@ -593,19 +598,19 @@ public class Interpreter : MonoBehaviour
                         {
                             if (!mainGisinstall)
                             {
-                                response.Add("Le package \"mainG\" est bien installé vous pouvez le configurez");
+                                response.Add("Le package \"mainG\" est bien installé, vous pouvez le configurer");
                                 mainGisinstall = true;
                                 return response;
                             }
                             else
                             {
-                                response.Add("Package déja installé");
+                                response.Add("Package déjà installé");
                                 return response;
                             }
                         }
                         else
                         {
-                            response.Add("Erreur il manque des dépendances");
+                            response.Add("Erreur, il manque des dépendances");
                             return response;
                         }
                     }
@@ -614,7 +619,7 @@ public class Interpreter : MonoBehaviour
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
                 return response;
             }
         }
@@ -625,7 +630,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("MainG_Position") && PlayerPrefs.HasKey("MainG_Rotation"))
                 {
-                    response.Add("Configuration déja en place");
+                    response.Add("Configuration déjà en place");
                     return response;
                 }
                 else
@@ -634,7 +639,7 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!mainGisConf)
                         {
-                            response.Add("Fichiez crée vous pouvez ajoutez la main (réf : 991985) au robot");
+                            response.Add("Fichier créé, vous pouvez ajouter la main gauche au robot");
                             mainGisConf = true;
                             PlayerPrefs.SetInt("MainGIsConfig", 1);
                             PlayerPrefs.Save();
@@ -642,14 +647,14 @@ public class Interpreter : MonoBehaviour
                         }
                         else
                         {
-                            response.Add("Configuration déja en place");
+                            response.Add("Configuration déjà en place");
                             return response;
 
                         }
                     }
                     else
                     {
-                        response.Add("Aucune référence à mainG dans vos package la config est impossible");
+                        response.Add("Aucune référence à mainG dans vos packages, la configuration est impossible");
                         return response;
                     }
                 }
@@ -668,7 +673,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("JambeL_Position") && PlayerPrefs.HasKey("JambeL_Rotation"))
                 {
-                    response.Add("Package déja installé");
+                    response.Add("Package déjà installé");
                     return response;
                 }
                 else
@@ -681,14 +686,14 @@ public class Interpreter : MonoBehaviour
                     }
                     else
                     {
-                        response.Add("Package déja installé");
+                        response.Add("Package déjà installé");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
 
                 return response;
             }
@@ -700,7 +705,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("JambeL_Position") && PlayerPrefs.HasKey("JambeL_Rotation"))
                 {
-                    response.Add("Configuration déja en place");
+                    response.Add("Configuration déjà en place");
                     return response;
                 }
                 else
@@ -709,7 +714,7 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!jambeGisConf)
                         {
-                            response.Add("Fichiez crée vous pouvez ajoutez la jambe (réf : 994876) au robot");
+                            response.Add("Fichier créé, vous pouvez ajouter la jambe gauche au robot");
                             jambeGisConf = true;
                             PlayerPrefs.SetInt("JambeGIsConfig", 1);
                             PlayerPrefs.Save();
@@ -717,21 +722,21 @@ public class Interpreter : MonoBehaviour
                         }
                         else
                         {
-                            response.Add("Configuration déja en place");
+                            response.Add("Configuration déjà en place");
                             return response;
                         }
 
                     }
                     else
                     {
-                        response.Add("Aucune référence à jambeG dans vos package la config est impossible");
+                        response.Add("Aucune référence à jambeG dans vos packages, la configuration est impossible");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
 
                 return response;
             }
@@ -743,7 +748,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("PiedL_Position") && PlayerPrefs.HasKey("PiedL_Rotation"))
                 {
-                    response.Add("Package déja installé");
+                    response.Add("Package déjà installé");
                     return response;
                 }
                 else
@@ -752,13 +757,13 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!piedGisinstall)
                         {
-                            response.Add("Le package \"piedG\" est bien installé vous pouvez le configurez");
+                            response.Add("Le package \"piedG\" est bien installé, vous pouvez le configurer");
                             piedGisinstall = true;
                             return response;
                         }
                         else
                         {
-                            response.Add("Package déja installé");
+                            response.Add("Package déjà installé");
                             return response;
                         }
                     }
@@ -768,19 +773,19 @@ public class Interpreter : MonoBehaviour
                         {
                             if (!piedGisinstall)
                             {
-                                response.Add("Le package \"piedG\" est bien installé vous pouvez le configurez");
+                                response.Add("Le package \"piedG\" est bien installé, vous pouvez le configurer");
                                 piedGisinstall = true;
                                 return response;
                             }
                             else
                             {
-                                response.Add("Package déja installé");
+                                response.Add("Package déjà installé");
                                 return response;
                             }
                         }
                         else
                         {
-                            response.Add("Erreur il manque des dépendances");
+                            response.Add("Erreur, il manque des dépendances");
                             return response;
                         }
                     }
@@ -788,7 +793,7 @@ public class Interpreter : MonoBehaviour
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
                 return response;
             }
 
@@ -800,7 +805,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("PiedL_Position") && PlayerPrefs.HasKey("PiedL_Rotation"))
                 {
-                    response.Add("Configuration déja en place");
+                    response.Add("Configuration déjà en place");
                     return response;
                 }
                 else 
@@ -809,7 +814,7 @@ public class Interpreter : MonoBehaviour
                     {
                         if (!piedGisConf)
                         {
-                            response.Add("Fichiez crée vous pouvez ajoutez le pied (réf : 9905542) au robot");
+                            response.Add("Fichier créé, vous pouvez ajouter le pied gauche au robot");
                             piedGisConf = true;
                             PlayerPrefs.SetInt("PiedGIsConfig", 1);
                             PlayerPrefs.Save();
@@ -817,20 +822,20 @@ public class Interpreter : MonoBehaviour
                         }
                         else
                         {
-                            response.Add("Configuration déja en place");
+                            response.Add("Configuration déjà en place");
                             return response;
                         }
                     }
                     else
                     {
-                        response.Add("Aucune référence à piedG dans vos package la config est impossible");
+                        response.Add("Aucune référence à piedG dans vos packages, la configuration est impossible");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Vous n'avez pas les droits nécessaire");
+                response.Add("Vous n'avez pas les droits nécessaires");
                 return response;
             }
         }
@@ -838,9 +843,22 @@ public class Interpreter : MonoBehaviour
         //Livre d'histoire
         if (PlayerPrefs.HasKey("LivreHistoire_Position"))
         {
+            if (args[0] == "help")
+            {
+                //Return some info
+                response.Add("sudo su : permet de se connecter en tant que super utilisateur");
+                response.Add("sudo apt install <nom> : remplacez <nom> par le nom du package, cela lancera l'installation du package");
+                response.Add("cat <nom>_config.txt : remplacez <nom> par le nom du package, cela créera la configuration du package");
+                response.Add("mkdir <nom> : permet de créer un dossier (seulement disponible pour les livres)");
+                response.Add("cd <nom> : permet de se rendre dans un dossier (seulement disponible pour les livres)");
+                response.Add("tar -cvf <nom>.tar : permet d'extraire le contenu du livre (seulement disponible pour les livres)");
+                response.Add("exit : permet de quitter l'interface");
+
+                return response;
+            }
             if (string.Join(" ", args) == "mkdir livre histoire")
             {
-                response.Add("Dossier Livre d'histoire crée");
+                response.Add("Dossier Livre d'histoire créé");
                 mkdirLivreHistoire = true;
                 return response;
             }
@@ -850,12 +868,12 @@ public class Interpreter : MonoBehaviour
                 {
                     livreHisoire.SetActive(true);
                     cdLivreHistoire = true;
-                    response.Add("Vous êtes maintenant dans el dossier livre histoire");
+                    response.Add("Vous êtes maintenant dans le dossier Livre d'histoire");
                     return response;
                 }
                 else
                 {
-                    response.Add("Dossier inconnu.");
+                    response.Add("Dossier inconnu");
                     return response;
                 }
             }
@@ -877,7 +895,7 @@ public class Interpreter : MonoBehaviour
                 }
                 else
                 {
-                    response.Add("Vous n'avez pas les droits nécessaire");
+                    response.Add("Vous n'avez pas les droits nécessaires");
                     return response;
                 }
             }
@@ -885,8 +903,8 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("RobotIsComplet") && PlayerPrefs.HasKey("LivreHistoire") && PlayerPrefs.HasKey("LivreSciences") && PlayerPrefs.HasKey("LivreChien"))
                 {
-                    response.Add("Félicitations F.I.N.C.H est maintenant compléter a 100%.");
-                    response.Add("Rentre la commande suivante : gcc finch.c -o finch");
+                    response.Add("Félicitations ! F.I.N.C.H. est maintenant complété à 100%");
+                    response.Add("Entre la commande suivante : gcc finch.c -o finch");
                     PlayerPrefs.SetInt("RobotFini", 1);
                     return response;
                 }
@@ -895,14 +913,14 @@ public class Interpreter : MonoBehaviour
             {
                 if (isConnecter)
                 {
-                    response.Add("Vous êtes déconnectez press \"E\" pour sortir de l'ordinateur");
+                    response.Add("Vous êtes déconnecté. Appuyez sur \"E\" pour sortir de l'ordinateur");
                     isAdmin = false;
                     isConnecter = false;
                     return response;
                 }
                 else
                 {
-                    response.Add("Vous êtes déja déonnectez");
+                    response.Add("Vous êtes déjà déconnecté");
                     return response;
                 }
 
@@ -913,29 +931,42 @@ public class Interpreter : MonoBehaviour
                 {
                     if (isAdmin)
                     {
-                        response.Add("F.I.N.C.H términé ... systéme en marche ... F.I.N.C.H activé");
+                        response.Add("F.I.N.C.H terminé... Système en marche... F.I.N.C.H activé");
                         StartCoroutine(FinalGame());
                         return response;
                     }
                     else
                     {
-                        response.Add("Vous n'avez pas les droits nécessaire");
+                        response.Add("Vous n'avez pas les droits nécessaires");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Command not recognized.");
+                response.Add("Commande non reconnue");
                 return response;
             }
         }
         //Livre de sciences
         if (PlayerPrefs.HasKey("LivreSciences_Position"))
         {
+            if (args[0] == "help")
+            {
+                //Return some info
+                response.Add("sudo su : permet de se connecter en tant que super utilisateur");
+                response.Add("sudo apt install <nom> : remplacez <nom> par le nom du package, cela lancera l'installation du package");
+                response.Add("cat <nom>_config.txt : remplacez <nom> par le nom du package, cela créera la configuration du package");
+                response.Add("mkdir <nom> : permet de créer un dossier (seulement disponible pour les livres)");
+                response.Add("cd <nom> : permet de se rendre dans un dossier (seulement disponible pour les livres)");
+                response.Add("tar -cvf <nom>.tar : permet d'extraire le contenu du livre (seulement disponible pour les livres)");
+                response.Add("exit : permet de quitter l'interface");
+
+                return response;
+            }
             if (string.Join(" ", args) == "mkdir livre sciences")
             {
-                response.Add("Dossier Livre sciences crée");
+                response.Add("Dossier livre sciences créé");
                 mkdirLivreSciences = true;
                 return response;
             }
@@ -945,12 +976,12 @@ public class Interpreter : MonoBehaviour
                 {
                     livreSciences.SetActive(true);
                     cdLivreSciences = true;
-                    response.Add("Vous êtes maintenant dans el dossier livre Sciences");
+                    response.Add("Vous êtes maintenant dans le dossier livre Sciences");
                     return response;
                 }
                 else
                 {
-                    response.Add("Dossier inconnu.");
+                    response.Add("Dossier inconnu");
                     return response;
                 }
             }
@@ -972,7 +1003,7 @@ public class Interpreter : MonoBehaviour
                 }
                 else
                 {
-                    response.Add("Vous n'avez pas les droits nécessaire");
+                    response.Add("Vous n'avez pas les droits nécessaires");
                     return response;
                 }
             }
@@ -980,8 +1011,8 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("RobotIsComplet") && PlayerPrefs.HasKey("LivreHistoire") && PlayerPrefs.HasKey("LivreSciences") && PlayerPrefs.HasKey("LivreChien"))
                 {
-                    response.Add("Félicitations F.I.N.C.H est maintenant compléter a 100%.");
-                    response.Add("Rentre la commande suivante : gcc finch.c -o finch");
+                    response.Add("Félicitations ! F.I.N.C.H. est maintenant complété à 100%");
+                    response.Add("Entre la commande suivante : gcc finch.c -o finch");
                     PlayerPrefs.SetInt("RobotFini", 1);
                     return response;
                 }
@@ -990,14 +1021,14 @@ public class Interpreter : MonoBehaviour
             {
                 if (isConnecter)
                 {
-                    response.Add("Vous êtes déconnectez press \"E\" pour sortir de l'ordinateur");
+                    response.Add("Vous êtes déconnecté. Appuyez sur \"E\" pour sortir de l'ordinateur");
                     isAdmin = false;
                     isConnecter = false;
                     return response;
                 }
                 else
                 {
-                    response.Add("Vous êtes déja déonnectez");
+                    response.Add("Vous êtes déjà déconnecté");
                     return response;
                 }
 
@@ -1008,29 +1039,42 @@ public class Interpreter : MonoBehaviour
                 {
                     if (isAdmin)
                     {
-                        response.Add("F.I.N.C.H términé ... systéme en marche ... F.I.N.C.H activé");
+                        response.Add("F.I.N.C.H terminé... Système en marche... F.I.N.C.H activé");
                         StartCoroutine(FinalGame());
                         return response;
                     }
                     else
                     {
-                        response.Add("Vous n'avez pas les droits nécessaire");
+                        response.Add("Vous n'avez pas les droits nécessaires");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Command not recognized.");
+                response.Add("Commande non reconnue");
                 return response;
             }
         }
         //Livre de chien
         if (PlayerPrefs.HasKey("LivreChien_Position"))
         {
+            if (args[0] == "help")
+            {
+                //Return some info
+                response.Add("sudo su : permet de se connecter en tant que super utilisateur");
+                response.Add("sudo apt install <nom> : remplacez <nom> par le nom du package, cela lancera l'installation du package");
+                response.Add("cat <nom>_config.txt : remplacez <nom> par le nom du package, cela créera la configuration du package");
+                response.Add("mkdir <nom> : permet de créer un dossier (seulement disponible pour les livres)");
+                response.Add("cd <nom> : permet de se rendre dans un dossier (seulement disponible pour les livres)");
+                response.Add("tar -cvf <nom>.tar : permet d'extraire le contenu du livre (seulement disponible pour les livres)");
+                response.Add("exit : permet de quitter l'interface");
+
+                return response;
+            }
             if (string.Join(" ", args) == "mkdir livre chien")
             {
-                response.Add("Dossier Livre chien crée");
+                response.Add("Dossier Livre chien créé");
                 mkdirLivreChien = true;
                 return response;
             }
@@ -1040,12 +1084,12 @@ public class Interpreter : MonoBehaviour
                 {
                     livreChien.SetActive(true);
                     cdLivreChien = true;
-                    response.Add("Vous êtes maintenant dans el dossier livre Chien");
+                    response.Add("Vous êtes maintenant dans le dossier Livre Chien");
                     return response;
                 }
                 else
                 {
-                    response.Add("Dossier inconnu.");
+                    response.Add("Dossier inconnu");
                     return response;
                 }
             }
@@ -1067,7 +1111,7 @@ public class Interpreter : MonoBehaviour
                 }
                 else
                 {
-                    response.Add("Vous n'avez pas les droits nécessaire");
+                    response.Add("Vous n'avez pas les droits nécessaires");
                     return response;
                 }
             }
@@ -1075,8 +1119,8 @@ public class Interpreter : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("RobotIsComplet") && PlayerPrefs.HasKey("LivreHistoire") && PlayerPrefs.HasKey("LivreSciences") && PlayerPrefs.HasKey("LivreChien"))
                 {
-                    response.Add("Félicitations F.I.N.C.H est maintenant compléter a 100%.");
-                    response.Add("Rentre la commande suivante : gcc finch.c -o finch");
+                    response.Add("Félicitations ! F.I.N.C.H. est maintenant complété à 100%");
+                    response.Add("Entre la commande suivante : gcc finch.c -o finch");
                     PlayerPrefs.SetInt("RobotFini", 1);
                     return response;
                 }
@@ -1085,14 +1129,14 @@ public class Interpreter : MonoBehaviour
             {
                 if (isConnecter)
                 {
-                    response.Add("Vous êtes déconnectez press \"E\" pour sortir de l'ordinateur");
+                    response.Add("Vous êtes déconnecté. Appuyez sur \"E\" pour sortir de l'ordinateur");
                     isAdmin = false;
                     isConnecter = false;
                     return response;
                 }
                 else
                 {
-                    response.Add("Vous êtes déja déonnectez");
+                    response.Add("Vous êtes déjà déconnecté");
                     return response;
                 }
 
@@ -1103,20 +1147,20 @@ public class Interpreter : MonoBehaviour
                 {
                     if (isAdmin)
                     {
-                        response.Add("F.I.N.C.H términé ... systéme en marche ... F.I.N.C.H activé");
+                        response.Add("F.I.N.C.H terminé... Système en marche... F.I.N.C.H activé");
                         StartCoroutine(FinalGame());
                         return response;
                     }
                     else
                     {
-                        response.Add("Vous n'avez pas les droits nécessaire");
+                        response.Add("Vous n'avez pas les droits nécessaires");
                         return response;
                     }
                 }
             }
             else
             {
-                response.Add("Command not recognized.");
+                response.Add("Commande non reconnue");
                 return response;
             }
         }
@@ -1125,8 +1169,8 @@ public class Interpreter : MonoBehaviour
         {
             if (PlayerPrefs.HasKey("RobotIsComplet") && PlayerPrefs.HasKey("LivreHistoire") && PlayerPrefs.HasKey("LivreSciences") && PlayerPrefs.HasKey("LivreChien"))
             {
-                response.Add("Félicitations F.I.N.C.H est maintenant compléter a 100%.");
-                response.Add("Rentre la commande suivante : gcc finch.c -o finch");
+                response.Add("Félicitations ! F.I.N.C.H. est maintenant complété à 100%");
+                response.Add("Entre la commande suivante : gcc finch.c -o finch");
                 PlayerPrefs.SetInt("RobotFini", 1);
                 return response;
             }
@@ -1137,13 +1181,13 @@ public class Interpreter : MonoBehaviour
             {
                 if (isAdmin)
                 {
-                    response.Add("F.I.N.C.H términé ... systéme en marche ... F.I.N.C.H activé");
+                    response.Add("F.I.N.C.H terminé... Système en marche... F.I.N.C.H activé");
                     StartCoroutine(FinalGame());
                     return response;
                 }
                 else
                 {
-                    response.Add("Vous n'avez pas les droits nécessaire");
+                    response.Add("Vous n'avez pas les droits nécessaires");
                     return response;
                 }
             }
@@ -1153,21 +1197,21 @@ public class Interpreter : MonoBehaviour
         {
             if (isConnecter)
             {
-                response.Add("Vous êtes déconnectez press \"E\" pour sortir de l'ordinateur");
+                response.Add("Vous êtes déconnecté. Appuyez sur \"E\" pour sortir de l'ordinateur");
                 isAdmin = false;
                 isConnecter = false;
                 return response;
             }
             else
             {
-                response.Add("Vous êtes déja déonnectez");
+                response.Add("Vous êtes déjà déconnecté");
                 return response;
             }
 
         }
         else
         {
-            response.Add("Command not recognized.");
+            response.Add("Commande non reconnue");
             return response;
         }
     }

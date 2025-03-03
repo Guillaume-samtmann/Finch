@@ -562,7 +562,7 @@ public class CamRaycast : MonoBehaviour
         }
         
         //déposer le livre
-        if(Input.GetKeyDown(KeyCode.E) && hittedObject !=null && hittedObject.CompareTag("extractBook"))
+        if(Input.GetKeyDown(KeyCode.R) && hittedObject !=null && hittedObject.CompareTag("extractBook"))
         {
             if (PlayerPrefs.HasKey("BookHistoryPickUp"))
             {
@@ -605,7 +605,7 @@ public class CamRaycast : MonoBehaviour
         }
 
         //déposer une piéce robot
-        if (Input.GetKeyDown(KeyCode.E) && hittedObject != null && hittedObject.CompareTag("depotPieceRobot"))
+        if (Input.GetKeyDown(KeyCode.R) && hittedObject != null && hittedObject.CompareTag("depotPieceRobot"))
         {
             switch (hittedObject.name)
             {

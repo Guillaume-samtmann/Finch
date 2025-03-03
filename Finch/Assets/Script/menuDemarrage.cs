@@ -8,6 +8,12 @@ public class menuDemarrage : MonoBehaviour
 {
     public GameObject page1;
     public GameObject page2;
+
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     public void play()
     {
         SceneManager.LoadScene(1);

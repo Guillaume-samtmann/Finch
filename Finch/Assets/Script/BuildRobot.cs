@@ -118,43 +118,6 @@ public class BuildRobot : MonoBehaviour
             pickUpRobot.piedL.transform.rotation = savedRotation;
             pickUpRobot.piedL.SetActive(true);
         }
-
-        if (PlayerPrefs.HasKey("TeteAttach"))
-        {
-            pieceRobots++;
-        }
-        if (PlayerPrefs.HasKey("BrasRAttach"))
-        {
-            pieceRobots++;
-        }
-        if (PlayerPrefs.HasKey("MainRAttach"))
-        {
-            pieceRobots++;
-        }
-        if (PlayerPrefs.HasKey("JambeRAttach"))
-        {
-            pieceRobots++;
-        }
-        if (PlayerPrefs.HasKey("PiedRAttach"))
-        {
-            pieceRobots++;
-        }
-        if (PlayerPrefs.HasKey("BrasGAttach"))
-        {
-            pieceRobots++;
-        }
-        if (PlayerPrefs.HasKey("MainGAttach"))
-        {
-            pieceRobots++;
-        }
-        if (PlayerPrefs.HasKey("JambeLAttach"))
-        {
-            pieceRobots++;
-        }
-        if (PlayerPrefs.HasKey("PiedLAttach"))
-        {
-            pieceRobots++;
-        }
     }
 
     // Update is called once per frame
@@ -162,6 +125,11 @@ public class BuildRobot : MonoBehaviour
     {
         lesPieceRobots();
         //Debug.Log(pieceRobots);
+        if(PlayerPrefs.HasKey("TeteAttach") && PlayerPrefs.HasKey("BrasRAttach") && PlayerPrefs.HasKey("MainRAttach") && PlayerPrefs.HasKey("JambeRAttach") && PlayerPrefs.HasKey("PiedRAttach") && PlayerPrefs.HasKey("BrasGAttach") &&
+            PlayerPrefs.HasKey("MainGAttach") && PlayerPrefs.HasKey("JambeLAttach") && PlayerPrefs.HasKey("PiedLAttach"))
+        {
+            pieceRobots = 9;
+        }
     }
 
     void lesPieceRobots()
@@ -171,7 +139,7 @@ public class BuildRobot : MonoBehaviour
             //RobotIsComplet = true;
             PlayerPrefs.SetInt("RobotIsComplet", 1);
             PlayerPrefs.Save();
-            //Debug.Log("Robot completer");
+            Debug.Log("Robot completer");
         }
         else
         {
