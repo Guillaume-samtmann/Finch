@@ -907,6 +907,23 @@ public class Interpreter : MonoBehaviour
                 }
 
             }
+            if (PlayerPrefs.HasKey("RobotFini"))
+            {
+                if (string.Join(" ", args) == "gcc finch.c -o finch")
+                {
+                    if (isAdmin)
+                    {
+                        response.Add("F.I.N.C.H términé ... systéme en marche ... F.I.N.C.H activé");
+                        StartCoroutine(FinalGame());
+                        return response;
+                    }
+                    else
+                    {
+                        response.Add("Vous n'avez pas les droits nécessaire");
+                        return response;
+                    }
+                }
+            }
             else
             {
                 response.Add("Command not recognized.");
@@ -985,6 +1002,23 @@ public class Interpreter : MonoBehaviour
                 }
 
             }
+            if (PlayerPrefs.HasKey("RobotFini"))
+            {
+                if (string.Join(" ", args) == "gcc finch.c -o finch")
+                {
+                    if (isAdmin)
+                    {
+                        response.Add("F.I.N.C.H términé ... systéme en marche ... F.I.N.C.H activé");
+                        StartCoroutine(FinalGame());
+                        return response;
+                    }
+                    else
+                    {
+                        response.Add("Vous n'avez pas les droits nécessaire");
+                        return response;
+                    }
+                }
+            }
             else
             {
                 response.Add("Command not recognized.");
@@ -1062,6 +1096,23 @@ public class Interpreter : MonoBehaviour
                     return response;
                 }
 
+            }
+            if (PlayerPrefs.HasKey("RobotFini"))
+            {
+                if (string.Join(" ", args) == "gcc finch.c -o finch")
+                {
+                    if (isAdmin)
+                    {
+                        response.Add("F.I.N.C.H términé ... systéme en marche ... F.I.N.C.H activé");
+                        StartCoroutine(FinalGame());
+                        return response;
+                    }
+                    else
+                    {
+                        response.Add("Vous n'avez pas les droits nécessaire");
+                        return response;
+                    }
+                }
             }
             else
             {

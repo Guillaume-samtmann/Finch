@@ -17,6 +17,7 @@ TagManager:
   - InspecterCar2
   - InspecterBus1
   - repartCostume
+  - retireCostume
   layers:
   - Default
   - TransparentFX

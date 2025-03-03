@@ -32,6 +32,8 @@ public class GestionMateraiux : MonoBehaviour
                 PlayerPrefs.Save();
                 Debug.Log(nbrMateriauxID);
                 nbrMateriaux.text = nbrMateriauxID.ToString();
+                PlayerPrefs.SetInt("newValueInventaire", 1);
+                PlayerPrefs.Save();
             }
         }
         else
