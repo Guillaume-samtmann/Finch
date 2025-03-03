@@ -43,7 +43,7 @@ public class VerifCss : MonoBehaviour
     IEnumerator loadScene()
     {
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
 

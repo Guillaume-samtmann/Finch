@@ -118,7 +118,7 @@ public class PlayeurControllerOpenWorld : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E) && canGoUnderground)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
 
         if(Input.GetKeyDown(KeyCode.E) && canInspectCar)

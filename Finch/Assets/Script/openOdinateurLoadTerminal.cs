@@ -32,7 +32,7 @@ public class openOdinateurLoadTerminal : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyUp(KeyCode.E) && canOpenDesktop) {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
         
     }

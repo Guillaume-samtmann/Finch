@@ -14,6 +14,7 @@ public class RepartCostume : MonoBehaviour
 
     public GameObject costume;
     public GameObject CanvaCostume;
+    public GameObject trait;
 
     private void Start()
     {
@@ -23,6 +24,13 @@ public class RepartCostume : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             costume.gameObject.SetActive(false);
             CanvaCostume.gameObject.SetActive(true);
+            trait.gameObject.SetActive(false);
+        }
+        else
+        {
+            costume.gameObject.SetActive(true);
+            CanvaCostume.gameObject.SetActive(false);
+            trait.gameObject.SetActive(true);
         }
     }
 
@@ -36,7 +44,8 @@ public class RepartCostume : MonoBehaviour
                 canRepart = false;
                 pickUpRobot.iconE.SetActive(true);
                 camRaycast.nameObj.SetActive(true);
-                camRaycast.infoNameObj.text = "La combinaison est réparer press E pour la porter";
+                camRaycast.infoNameObj.text = "Combinaison";
+                camRaycast.infoObj.text = "La combinaison est réparée appuyez sur E pour la porter";
                 PlayerPrefs.SetInt("canTakeCostume", 1);
             }
             else
@@ -44,12 +53,14 @@ public class RepartCostume : MonoBehaviour
                 canRepart = true;
                 pickUpRobot.iconE.SetActive(true);
                 camRaycast.nameObj.SetActive(true);
-                camRaycast.infoNameObj.text = "La combinaison est cassé press E pour la réparer";
+                camRaycast.infoNameObj.text = "Combinaison";
+                camRaycast.infoObj.text = "Appuyez sur E pour réparer la combinaison";
             }
         }
 
         if(other.gameObject.tag == "retireCostume")
         {
+            isRepart = false;
             retirerCostume = true;
             pickUpRobot.iconE.SetActive(true);
         }
@@ -66,6 +77,7 @@ public class RepartCostume : MonoBehaviour
         if (other.gameObject.tag == "retireCostume")
         {
             retirerCostume = false;
+            isRepart = false;
             pickUpRobot.iconE.SetActive(false);
         }
     }
@@ -75,15 +87,15 @@ public class RepartCostume : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.E) && canRepart) 
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
         }
 
         if(Input.GetKeyUp(KeyCode.E) && PlayerPrefs.HasKey("canTakeCostume") && isRepart)
         {
             camRaycast.nameObj.SetActive(true);
-            camRaycast.infoNameObj.text = "Tu est prêt pour sortir";
             costume.gameObject.SetActive(false);
             CanvaCostume.gameObject.SetActive(true);
+            trait.gameObject.SetActive(false);
             PlayerPrefs.SetInt("CostumeIsTaking", 1);
         }
         if( Input.GetKeyUp(KeyCode.E) && retirerCostume)
@@ -91,6 +103,7 @@ public class RepartCostume : MonoBehaviour
             costume.gameObject.SetActive(true);
             CanvaCostume.gameObject.SetActive(false);
             retirerCostume = false;
+            trait.gameObject.SetActive(true);
             PlayerPrefs.DeleteKey("CostumeIsTaking");
             PlayerPrefs.Save();
         }

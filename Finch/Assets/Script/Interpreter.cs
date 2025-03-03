@@ -1181,14 +1181,14 @@ public class Interpreter : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E) && !isConnecter)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 
     IEnumerator FinalGame()
     {
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(5);
     }
 }
 

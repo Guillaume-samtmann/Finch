@@ -84,7 +84,7 @@ public class GestionMateraiux : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && canGoOutside)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
         }
 
     }

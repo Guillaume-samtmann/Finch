@@ -25,6 +25,7 @@ public class CamRaycast : MonoBehaviour
     public GameObject extractBook;
     public GameObject nameObj;
     public Text infoNameObj;
+    public Text infoObj;
     public GameObject jambeCasser;
     //
     public bool teteIsShow = true;
@@ -74,7 +75,8 @@ public class CamRaycast : MonoBehaviour
                         HighlightObject(hittedObject, true);
                         iconeE.SetActive(true);
                         nameObj.SetActive(true);
-                        infoNameObj.text = "Pièce : Tête";
+                        infoNameObj.text = "Tete";
+                        infoObj.text = "Il faut installer le package et effectuer la configuration pour utiliser la tete";
                     }
                 }
                 if (hittedObject.name == "bras.R") pickUpRobot.brasRPickUp = true;
@@ -90,7 +92,8 @@ public class CamRaycast : MonoBehaviour
                         HighlightObject(hittedObject, true);
                         iconeE.SetActive(true);
                         nameObj.SetActive(true);
-                        infoNameObj.text = "Pièce : Bras Droit";
+                        infoNameObj.text = "Bras droit";
+                        infoObj.text = "Il faut installer le package et effectuer la configuration pour utiliser le bras droit";
                     }
                 }
                 if (hittedObject.name == "main.R") pickUpRobot.mainRPickUp = true;
@@ -107,7 +110,9 @@ public class CamRaycast : MonoBehaviour
                         HighlightObject(hittedObject, true);
                         iconeE.SetActive(true);
                         nameObj.SetActive(true);
-                        infoNameObj.text = "Pièce : Main Droit";
+                        infoNameObj.text = "Main droite";
+                        infoObj.text = "Il faut installer le package et effectuer la configuration pour utiliser la main droite. Attention, si le bras droit n'est pas en place " +
+                            "la main sera inutilisable";
                     }
                 }
                 if (hittedObject.name == "jambe.R") pickUpRobot.jambeRPickUp = true;
@@ -124,7 +129,8 @@ public class CamRaycast : MonoBehaviour
                         HighlightObject(hittedObject, true);
                         iconeE.SetActive(true);
                         nameObj.SetActive(true);
-                        infoNameObj.text = "Pièce : Jambe Droit";
+                        infoNameObj.text = "Jambe Droite";
+                        infoObj.text = "Il faut installer le package et effectuer la configuration pour utiliser la jambe droite";
                     }
                 }
                 if (hittedObject.name == "jambeCasser")
@@ -134,14 +140,16 @@ public class CamRaycast : MonoBehaviour
                         HighlightObject(hittedObject, true);
                         iconeE.SetActive(false);
                         nameObj.SetActive(true);
-                        infoNameObj.text = "Pièce : Jambe Droit cassé récupérer 10métaux pour la réparer";
+                        infoNameObj.text = "Jambe droite/Cassée";
+                        infoObj.text = "Trouver 10 métaux pour réparer la jambe";
                     }
                     else
                     {
                         HighlightObject(hittedObject, true);
                         iconeE.SetActive(true);
                         nameObj.SetActive(true);
-                        infoNameObj.text = "Pièce : Jambe Droit cassé press E pour la réparer";
+                        infoNameObj.text = "Jambe droite/Cassée";
+                        infoObj.text = "Appuyez sur E pour réparer la jambe";
                     }
 
                 }
@@ -159,7 +167,9 @@ public class CamRaycast : MonoBehaviour
                         HighlightObject(hittedObject, true);
                         iconeE.SetActive(true);
                         nameObj.SetActive(true);
-                        infoNameObj.text = "Pièce : Pied Droit";
+                        infoNameObj.text = "Pied droit";
+                        infoObj.text = "Il faut installer le package et effectuer la configuration pour utiliser le pied droit. Attention, si la jambe droite n'est pas en place " +
+                            "le pied sera inutilisable";
                     }
                 }
                 if (hittedObject.name == "bras.G") pickUpRobot.brasGPickUp = true;
@@ -176,7 +186,8 @@ public class CamRaycast : MonoBehaviour
                         HighlightObject(hittedObject, true);
                         iconeE.SetActive(true);
                         nameObj.SetActive(true);
-                        infoNameObj.text = "Pièce : Bras Gauche";
+                        infoNameObj.text = "Bras gauche";
+                        infoObj.text = "Il faut installer le package et effectuer la configuration pour utiliser le bras gauche";
                     }
                 }
                 if (hittedObject.name == "main.G") pickUpRobot.mainGPickUp = true;
@@ -193,7 +204,9 @@ public class CamRaycast : MonoBehaviour
                         HighlightObject(hittedObject, true);
                         iconeE.SetActive(true);
                         nameObj.SetActive(true);
-                        infoNameObj.text = "Pièce : Main Gauche";
+                        infoNameObj.text = "Main gauche";
+                        infoObj.text = "Il faut installer le package et effectuer la configuration pour utiliser la main gauche. Attention, si le bras cauche n'est pas en place " +
+                            "la main sera inutilisable";
                     }
                 }
                 if (hittedObject.name == "jambe.L") pickUpRobot.jambeLPickUp = true;
@@ -210,7 +223,8 @@ public class CamRaycast : MonoBehaviour
                         HighlightObject(hittedObject, true);
                         iconeE.SetActive(true);
                         nameObj.SetActive(true);
-                        infoNameObj.text = "Pièce : Jambe Gauche";
+                        infoNameObj.text = "Jambe gauche";
+                        infoObj.text = "Il faut installer le package et effectuer la configuration pour utiliser la jambe gauche";
                     }
                 }
                 if (hittedObject.name == "pieds.L") pickUpRobot.piedLPickUp = true;
@@ -227,7 +241,9 @@ public class CamRaycast : MonoBehaviour
                         HighlightObject(hittedObject, true);
                         iconeE.SetActive(true);
                         nameObj.SetActive(true);
-                        infoNameObj.text = "Pièce : Pied Gauche";
+                        infoNameObj.text = "Pied Gauche";
+                        infoObj.text = "Il faut installer le package et effectuer la configuration pour utiliser le pied gauche. Attention, si la jambe gauche n'est pas en place " +
+                            "le pied sera inutilisable";
                     }
                 }
             }
@@ -236,40 +252,32 @@ public class CamRaycast : MonoBehaviour
                 HighlightObject(hittedObject, true);
                 iconeE.SetActive(true);
 
-                if ( hittedObject.name == "bookHistoire")
+                // Histoire
+                if (hittedObject.name == "bookHistoire")
                 {
                     LearnBooks.HistoryBook = true;
                     nameObj.SetActive(true);
                     infoNameObj.text = "livre histoire";
+                    Debug.Log("livre histoire");
                 }
-                else
+                else if (hittedObject.name == "bookSciences")
                 {
-                    nameObj.SetActive(false);
-                    LearnBooks.HistoryBook = false;
-                }
-
-                //science
-                if (hittedObject.name == "bookSciences")
-                {
+                    // Sciences
                     LearnBooks.SciencesBook = true;
                     nameObj.SetActive(true);
                     infoNameObj.text = "livre sciences";
                 }
-                else
+                else if (hittedObject.name == "bookChien")
                 {
-                    LearnBooks.SciencesBook = false;
-                    nameObj.SetActive(false);
-                }
-        
-                //chien
-                if (hittedObject.name == "bookChien")
-                {
+                    // Chien
                     LearnBooks.ChienBook = true;
                     nameObj.SetActive(true);
                     infoNameObj.text = "livre chien";
                 }
                 else
                 {
+                    LearnBooks.HistoryBook = false;
+                    LearnBooks.SciencesBook = false;
                     LearnBooks.ChienBook = false;
                     nameObj.SetActive(false);
                 }
