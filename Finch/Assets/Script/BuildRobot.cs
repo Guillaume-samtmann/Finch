@@ -11,14 +11,10 @@ public class BuildRobot : MonoBehaviour
     public PickUpRobot pickUpRobot;
     public Inventory inventory;
 
-    //bool RobotIsComplet = false;
-
     public int pieceRobots = 0;
 
     private void Start()
     {
-        //PlayerPrefs.DeleteAll();
-        //PlayerPrefs.Save();
 
         //brasR
         if (PlayerPrefs.HasKey("BrasR_Position") && PlayerPrefs.HasKey("BrasR_Rotation"))
@@ -124,7 +120,6 @@ public class BuildRobot : MonoBehaviour
     void Update()
     {
         lesPieceRobots();
-        //Debug.Log(pieceRobots);
         if(PlayerPrefs.HasKey("TeteAttach") && PlayerPrefs.HasKey("BrasRAttach") && PlayerPrefs.HasKey("MainRAttach") && PlayerPrefs.HasKey("JambeRAttach") && PlayerPrefs.HasKey("PiedRAttach") && PlayerPrefs.HasKey("BrasGAttach") &&
             PlayerPrefs.HasKey("MainGAttach") && PlayerPrefs.HasKey("JambeLAttach") && PlayerPrefs.HasKey("PiedLAttach"))
         {
@@ -136,14 +131,12 @@ public class BuildRobot : MonoBehaviour
     {
         if (pieceRobots == 9)
         {
-            //RobotIsComplet = true;
             PlayerPrefs.SetInt("RobotIsComplet", 1);
             PlayerPrefs.Save();
             Debug.Log("Robot completer");
         }
         else
         {
-            //Debug.Log("Robot non completer");
         }
     }
 }

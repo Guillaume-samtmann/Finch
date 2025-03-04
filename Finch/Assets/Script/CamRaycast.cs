@@ -16,7 +16,7 @@ public class CamRaycast : MonoBehaviour
 
     // Variables
     private GameObject previousHittedObject;
-    private GameObject hittedObject;  // Stocker l'objet touché globalement
+    private GameObject hittedObject;
     public GameObject iconeE;
     public GameObject iconeR;
     public GameObject tete;
@@ -293,7 +293,7 @@ public class CamRaycast : MonoBehaviour
             }
             else
             {
-                //Debug.Log("NOOON");
+
             }
             if (hittedObject.CompareTag("extractBook"))
             {
@@ -301,7 +301,6 @@ public class CamRaycast : MonoBehaviour
                 nameObj.SetActive(true);
                 infoNameObj.text = "Extracteur";
                 iconeR.SetActive(true);
-                //Debug.Log("tu peux déposer le livre");
             }
             else
             {

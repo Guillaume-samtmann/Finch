@@ -18,6 +18,7 @@ TagManager:
   - InspecterBus1
   - repartCostume
   - retireCostume
+  - visualisation
   layers:
   - Default
   - TransparentFX
