@@ -18,11 +18,12 @@ public class RepartCostume : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         if (PlayerPrefs.HasKey("CostumeIsTaking"))
         {
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            //Cursor.visible = false;
             costume.gameObject.SetActive(false);
             CanvaCostume.gameObject.SetActive(true);
             trait.gameObject.SetActive(false);

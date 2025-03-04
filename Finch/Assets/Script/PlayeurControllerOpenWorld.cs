@@ -24,6 +24,8 @@ public class PlayeurControllerOpenWorld : MonoBehaviour
         //PlayerPrefs.DeleteAll();
         //PlayerPrefs.Save();
 
+        Cursor.lockState = CursorLockMode.Locked;
+
         if (PlayerPrefs.HasKey("jambeRreparer"))
         {
             if (PlayerPrefs.HasKey("newValueInventaire"))
@@ -126,7 +128,7 @@ public class PlayeurControllerOpenWorld : MonoBehaviour
             if (PlayerPrefs.HasKey("police_carInspecter"))
             {
                 panelInfo.SetActive(true);
-                infoTxt.text = "Véhicule déja fouillier !";
+                infoTxt.text = "Véhicule déjà fouillé !";
             }
             else
             {
@@ -144,7 +146,7 @@ public class PlayeurControllerOpenWorld : MonoBehaviour
             if (PlayerPrefs.HasKey("police_carInspecter1"))
             {
                 panelInfo.SetActive(true);
-                infoTxt.text = "Véhicule déja fouillier !";
+                infoTxt.text = "Véhicule déjà fouillé !";
             }
             else
             {
@@ -162,7 +164,7 @@ public class PlayeurControllerOpenWorld : MonoBehaviour
             if (PlayerPrefs.HasKey("minibus_carInspecter2"))
             {
                 panelInfo.SetActive(true);
-                infoTxt.text = "Véhicule déja fouillier !";
+                infoTxt.text = "Véhicule déjà fouillé !";
             }
             else
             {
@@ -179,7 +181,7 @@ public class PlayeurControllerOpenWorld : MonoBehaviour
             if (PlayerPrefs.HasKey("busInspecter1"))
             {
                 panelInfo.SetActive(true);
-                infoTxt.text = "Véhicule déja fouillier !";
+                infoTxt.text = "Véhicule déjà fouillé !";
             }
             else
             {
