@@ -16,6 +16,9 @@ public class RepartCostume : MonoBehaviour
     public GameObject CanvaCostume;
     public GameObject trait;
 
+    public AudioSource combinaisonAudioSource;
+    public AudioClip combinaisonClip;
+
     private void Start()
     {
         //Cursor.visible = false;
@@ -80,27 +83,31 @@ public class RepartCostume : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.E) && canRepart) 
+        if (Input.GetKeyUp(KeyCode.E))
         {
-            SceneManager.LoadScene(4);
-        }
-
-        if(Input.GetKeyUp(KeyCode.E) && PlayerPrefs.HasKey("canTakeCostume") && isRepart)
-        {
-            camRaycast.nameObj.SetActive(true);
-            costume.gameObject.SetActive(false);
-            CanvaCostume.gameObject.SetActive(true);
-            trait.gameObject.SetActive(false);
-            PlayerPrefs.SetInt("CostumeIsTaking", 1);
-        }
-        if( Input.GetKeyUp(KeyCode.E) && retirerCostume)
-        {
-            costume.gameObject.SetActive(true);
-            CanvaCostume.gameObject.SetActive(false);
-            retirerCostume = false;
-            trait.gameObject.SetActive(true);
-            PlayerPrefs.DeleteKey("CostumeIsTaking");
-            PlayerPrefs.Save();
+            if (canRepart)
+            {
+                SceneManager.LoadScene(4);
+            }
+            else if (PlayerPrefs.HasKey("canTakeCostume") && isRepart)
+            {
+                camRaycast.nameObj.SetActive(true);
+                costume.gameObject.SetActive(false);
+                CanvaCostume.gameObject.SetActive(true);
+                trait.gameObject.SetActive(false);
+                PlayerPrefs.SetInt("CostumeIsTaking", 1);
+                combinaisonAudioSource.PlayOneShot(combinaisonClip);
+            }
+            else if (retirerCostume)
+            {
+                costume.gameObject.SetActive(true);
+                CanvaCostume.gameObject.SetActive(false);
+                retirerCostume = false;
+                trait.gameObject.SetActive(true);
+                PlayerPrefs.DeleteKey("CostumeIsTaking");
+                PlayerPrefs.Save();
+                combinaisonAudioSource.PlayOneShot(combinaisonClip);
+            }
         }
     }
 }

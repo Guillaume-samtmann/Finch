@@ -38,6 +38,12 @@ public class CamRaycast : MonoBehaviour
     public bool jambeGisShow = true;
     public bool piedGisShow = true;
 
+    public AudioSource buildTheRobots;
+    public AudioClip clip;
+
+    public AudioSource pickupAudioSource;
+    public AudioClip pickuoClip;
+
     private void HighlightObject(GameObject obj, bool highlight)
     {
         Outline outline = obj?.GetComponent<Outline>();
@@ -292,6 +298,8 @@ public class CamRaycast : MonoBehaviour
             if (hittedObject.CompareTag("extractBook"))
             {
                 HighlightObject(hittedObject, true);
+                nameObj.SetActive(true);
+                infoNameObj.text = "Extracteur";
                 iconeR.SetActive(true);
                 //Debug.Log("tu peux déposer le livre");
             }
@@ -361,6 +369,7 @@ public class CamRaycast : MonoBehaviour
                             pickUpRobot.tetePickUp = false;
                             pickUpRobot.teteIsPickup = true;
                             inventory.inventory = 1;
+                            pickupAudioSource.PlayOneShot(pickuoClip);
                         }
                     }
                     break;
@@ -379,6 +388,7 @@ public class CamRaycast : MonoBehaviour
                             pickUpRobot.brasRIsPickup = true;
                             inventory.inventory = 1;
                             pickUpRobot.brasAttach = true;
+                            pickupAudioSource.PlayOneShot(pickuoClip);
                         }
                     }
                     break;
@@ -397,6 +407,7 @@ public class CamRaycast : MonoBehaviour
                             pickUpRobot.mainRPickUp = false;
                             pickUpRobot.mainRIsPickup = true;
                             inventory.inventory = 1;
+                            pickupAudioSource.PlayOneShot(pickuoClip);
                         }
                     }
                     break;
@@ -408,6 +419,7 @@ public class CamRaycast : MonoBehaviour
                         gestionMateraiux.nbrMateriauxID = gestionMateraiux.nbrMateriauxID - 10;
                         PlayerPrefs.SetInt("jambeRreparer", 1);
                         PlayerPrefs.Save();
+                        pickupAudioSource.PlayOneShot(pickuoClip);
 
                         gestionMateraiux.nbrMateriaux.text = gestionMateraiux.nbrMateriauxID.ToString();
                     }
@@ -428,6 +440,7 @@ public class CamRaycast : MonoBehaviour
                             pickUpRobot.jambeRIsPickup = true;
                             inventory.inventory = 1;
                             pickUpRobot.jambeRAttach = true;
+                            pickupAudioSource.PlayOneShot(pickuoClip);
                         }  
                     }
                     break;
@@ -446,6 +459,7 @@ public class CamRaycast : MonoBehaviour
                             pickUpRobot.piedRPickUp = false;
                             pickUpRobot.piedRIsPickup = true;
                             inventory.inventory = 1;
+                            pickupAudioSource.PlayOneShot(pickuoClip);
                         }
                     }
                     break;
@@ -465,6 +479,7 @@ public class CamRaycast : MonoBehaviour
                             pickUpRobot.brasGIsPickup = true;
                             inventory.inventory = 1;
                             pickUpRobot.brasGAttach = true;
+                            pickupAudioSource.PlayOneShot(pickuoClip);
                         }
                     }
                     break;
@@ -483,6 +498,7 @@ public class CamRaycast : MonoBehaviour
                             pickUpRobot.mainGPickUp = false;
                             pickUpRobot.mainGIsPickup = true;
                             inventory.inventory = 1;
+                            pickupAudioSource.PlayOneShot(pickuoClip);
                         }
                     }
                     break;
@@ -502,6 +518,7 @@ public class CamRaycast : MonoBehaviour
                             pickUpRobot.jambeLIsPickup = true;
                             inventory.inventory = 1;
                             pickUpRobot.jambeLAttach = true;
+                            pickupAudioSource.PlayOneShot(pickuoClip);
                         }
                     }
                     break;
@@ -520,6 +537,7 @@ public class CamRaycast : MonoBehaviour
                             pickUpRobot.piedLPickUp = false;
                             pickUpRobot.piedLIsPickup = true;
                             inventory.inventory = 1;
+                            pickupAudioSource.PlayOneShot(pickuoClip);
                         }
                     }
                     break;
@@ -536,6 +554,7 @@ public class CamRaycast : MonoBehaviour
                     {
                         LearnBooks.bookHistory.SetActive(false);
                         iconeE.SetActive(false);
+                        pickupAudioSource.PlayOneShot(pickuoClip);
                         PlayerPrefs.SetInt("BookHistoryPickUp", 1);
                         PlayerPrefs.Save();
                     }
@@ -545,6 +564,7 @@ public class CamRaycast : MonoBehaviour
                     {
                         LearnBooks.bookSciences.SetActive(false);
                         iconeE.SetActive(false);
+                        pickupAudioSource.PlayOneShot(pickuoClip);
                         PlayerPrefs.SetInt("BookSciencesPickUp", 1);
                         PlayerPrefs.Save();
                     }
@@ -554,6 +574,7 @@ public class CamRaycast : MonoBehaviour
                     {
                         LearnBooks.bookChien.SetActive(false);
                         iconeE.SetActive(false);
+                        pickupAudioSource.PlayOneShot(pickuoClip);
                         PlayerPrefs.SetInt("BookChienPickUp", 1);
                         PlayerPrefs.Save();
                     }
@@ -570,6 +591,7 @@ public class CamRaycast : MonoBehaviour
                 LearnBooks.bookHistory.transform.localPosition = new Vector3(3.34f, 0.84f, 5.14f);
                 LearnBooks.bookHistory.transform.rotation = Quaternion.Euler(0, -228.97f, 0);
                 LearnBooks.bookHistory.SetActive(true);
+                buildTheRobots.PlayOneShot(clip);
 
                 PlayerPrefs.SetString("LivreHistoire_Position", JsonUtility.ToJson(LearnBooks.bookHistory.transform.position));
                 PlayerPrefs.SetString("LivreHistoire_Rotation", JsonUtility.ToJson(LearnBooks.bookHistory.transform.rotation));
@@ -583,6 +605,7 @@ public class CamRaycast : MonoBehaviour
                 LearnBooks.bookSciences.transform.localPosition = new Vector3(3.34f, 0.84f, 5.14f);
                 LearnBooks.bookSciences.transform.rotation = Quaternion.Euler(0, -228.97f, 0);
                 LearnBooks.bookSciences.SetActive(true);
+                buildTheRobots.PlayOneShot(clip);
 
                 PlayerPrefs.SetString("LivreSciences_Position", JsonUtility.ToJson(LearnBooks.bookSciences.transform.position));
                 PlayerPrefs.SetString("LivreSciences_Rotation", JsonUtility.ToJson(LearnBooks.bookSciences.transform.rotation));
@@ -596,6 +619,7 @@ public class CamRaycast : MonoBehaviour
                 LearnBooks.bookChien.transform.localPosition = new Vector3(3.34f, 0.84f, 5.14f);
                 LearnBooks.bookChien.transform.rotation = Quaternion.Euler(0, -228.97f, 0);
                 LearnBooks.bookChien.SetActive(true);
+                buildTheRobots.PlayOneShot(clip);
 
                 PlayerPrefs.SetString("LivreChien_Position", JsonUtility.ToJson(LearnBooks.bookChien.transform.position));
                 PlayerPrefs.SetString("LivreChien_Rotation", JsonUtility.ToJson(LearnBooks.bookChien.transform.rotation));
@@ -618,6 +642,7 @@ public class CamRaycast : MonoBehaviour
                         pickUpRobot.jambeL.transform.rotation = Quaternion.Euler(-90f, -180, 90);
                         pickUpRobot.jambeL.SetActive(true);
                         inventory.inventory = 0;
+                        buildTheRobots.PlayOneShot(clip);
 
                         PlayerPrefs.SetInt("isAttachToRobotsJambeL", 1);
                         PlayerPrefs.Save();
@@ -639,6 +664,7 @@ public class CamRaycast : MonoBehaviour
                         pickUpRobot.jambeR.SetActive(true);
                         inventory.inventory = 0;
                         jambeRisShow = true;
+                        buildTheRobots.PlayOneShot(clip);
 
                         PlayerPrefs.SetInt("isAttachToRobotsJambeR", 1);
                         PlayerPrefs.Save();
@@ -661,6 +687,7 @@ public class CamRaycast : MonoBehaviour
                         pickUpRobot.teteTriggerEnabled = false;
                         inventory.inventory = 0;
                         teteIsShow = true;
+                        buildTheRobots.PlayOneShot(clip);
 
                         PlayerPrefs.SetInt("isAttachToRobotsTete", 1);
                         PlayerPrefs.Save();
@@ -682,6 +709,7 @@ public class CamRaycast : MonoBehaviour
                         pickUpRobot.brasR.SetActive(true);
                         inventory.inventory = 0;
                         brasRisShow = true;
+                        buildTheRobots.PlayOneShot(clip);
 
                         PlayerPrefs.SetInt("isAttachToRobotsBrasR", 1);
                         PlayerPrefs.Save();
@@ -704,6 +732,7 @@ public class CamRaycast : MonoBehaviour
                         pickUpRobot.brasGtriggerEnabled = false;
                         inventory.inventory = 0;
                         brasGisShow = true;
+                        buildTheRobots.PlayOneShot(clip);
 
                         PlayerPrefs.SetInt("isAttachToRobotsBrasG", 1);
                         PlayerPrefs.Save();
@@ -725,6 +754,7 @@ public class CamRaycast : MonoBehaviour
                         pickUpRobot.mainG.SetActive(true);
                         inventory.inventory = 0;
                         mainGisShow = true;
+                        buildTheRobots.PlayOneShot(clip);
 
                         PlayerPrefs.SetInt("isAttachToRobotsMainG", 1);
                         PlayerPrefs.Save();
@@ -746,6 +776,7 @@ public class CamRaycast : MonoBehaviour
                         pickUpRobot.piedL.SetActive(true);
                         inventory.inventory = 0;
                         piedGisShow = true;
+                        buildTheRobots.PlayOneShot(clip);
 
                         PlayerPrefs.SetInt("isAttachToRobotsPiedG", 1);
                         PlayerPrefs.Save();
@@ -767,6 +798,7 @@ public class CamRaycast : MonoBehaviour
                         pickUpRobot.mainR.SetActive(true);
                         inventory.inventory = 0;
                         mainRisShow = true;
+                        buildTheRobots.PlayOneShot(clip);
 
                         PlayerPrefs.SetInt("isAttachToRobotsMainR", 1);
                         PlayerPrefs.Save();
@@ -788,6 +820,7 @@ public class CamRaycast : MonoBehaviour
                         pickUpRobot.piedR.SetActive(true);
                         inventory.inventory = 0;
                         piedRisShow = true;
+                        buildTheRobots.PlayOneShot(clip);
 
                         PlayerPrefs.SetInt("isAttachToRobotsPiedR", 1);
                         PlayerPrefs.Save();

@@ -19,6 +19,9 @@ public class PlayeurControllerOpenWorld : MonoBehaviour
     public int inventaireRessource = 0;
     public int newValue;
 
+    public AudioSource pickupAudioSource;
+    public AudioClip pickuoClip;
+
     private void Start()
     {
         //PlayerPrefs.DeleteAll();
@@ -138,6 +141,7 @@ public class PlayeurControllerOpenWorld : MonoBehaviour
                 PlayerPrefs.SetInt("police_carInspecter", 1);
                 PlayerPrefs.Save();
                 Debug.Log(nbrMateriaux);
+                pickupAudioSource.PlayOneShot(pickuoClip);
             }
         }
 
@@ -156,6 +160,7 @@ public class PlayeurControllerOpenWorld : MonoBehaviour
                 PlayerPrefs.SetInt("police_carInspecter1", 1);
                 PlayerPrefs.Save();
                 Debug.Log(nbrMateriaux1);
+                pickupAudioSource.PlayOneShot(pickuoClip);
             }
         }
 
@@ -174,6 +179,7 @@ public class PlayeurControllerOpenWorld : MonoBehaviour
                 PlayerPrefs.SetInt("minibus_carInspecter2", 1);
                 PlayerPrefs.Save();
                 Debug.Log(nbrMateriaux2);
+                pickupAudioSource.PlayOneShot(pickuoClip);
             }
         }
         if (Input.GetKeyDown(KeyCode.E) && canInspectBus1)
@@ -190,6 +196,7 @@ public class PlayeurControllerOpenWorld : MonoBehaviour
                 nbrMateriauxTxt.text = inventaireRessource.ToString();
                 PlayerPrefs.SetInt("busInspecter1", 1);
                 PlayerPrefs.Save();
+                pickupAudioSource.PlayOneShot(pickuoClip);
             }
         }
         PlayerPrefs.SetInt("inventaireRessource", inventaireRessource);
